@@ -1,3 +1,5 @@
 <?php
 
-$cnf['username'] = 'kgerov';
+$cnf['username'] = 'kgerov12';
+
+return $cnf;
