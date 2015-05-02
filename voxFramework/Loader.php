@@ -60,7 +60,7 @@ final class Loader {
 	public static function removeNamespace($namespace) {
 		unset(self::$namespaces[$namespace]);
 	}
-
+ 
 	public static function clearNamespaces() {
 		self::$namespaces = array();
 	}

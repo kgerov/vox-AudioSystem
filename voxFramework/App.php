@@ -12,7 +12,6 @@ class App {
 	}
 
 	public function run() {
-		echo "In app run" . '<br>';
 	}
 
 	/**
