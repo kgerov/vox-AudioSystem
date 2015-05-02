@@ -2,7 +2,8 @@
 	include '../../voxFramework/App.php';
 
 	$app = \Vox\App::getInstance();
+	//\Vox\Loader::registerNamespace(' Test\Models', '/Applications/XAMPP/htdocs/test/vox/voxApplication/models');
 	$app->run();
 
-	new \Vox\Test();
+	//new \Test\Models\User();
 ?>

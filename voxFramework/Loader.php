@@ -52,4 +52,16 @@ final class Loader {
 			throw new \Exception('Invalid namespace' . $namespace);
 		}
 	}
+
+	public static function getNamespaces() {
+		return self::$namespaces;
+	}
+
+	public static function removeNamespace($namespace) {
+		unset(self::$namespaces[$namespace]);
+	}
+
+	public static function clearNamespaces() {
+		self::$namespaces = array();
+	}
 }
