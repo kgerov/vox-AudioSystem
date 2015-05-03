@@ -12,6 +12,7 @@ class DefaultRouter {
 		$_params = explode('/', $_uri);
 
 		if ($_params[0]) {
+			echo "in params 0";
 			$this->controller = ucfirst($_params[0]);
 
 			if ($_params[1]) {
