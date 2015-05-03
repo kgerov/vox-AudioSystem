@@ -5,7 +5,6 @@
 	$app = \Vox\App::getInstance();
 	$app->run();
 
-
 	//register Namespaces
 	//before run
 	//\Vox\Loader::registerNamespace(' Test\Models', '/Applications/XAMPP/htdocs/test/vox/voxApplication/models');

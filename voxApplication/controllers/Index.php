@@ -4,6 +4,6 @@ namespace Controllers;
 
 class Index {
 	public function index() {
-		echo "string";
+		//echo "string";
 	}
 }
