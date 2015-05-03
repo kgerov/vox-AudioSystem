@@ -6,6 +6,7 @@ include 'Loader.php';
 class App {
 	private static $_instance = null;
 	private $_config = null;
+	private $router = null;
 	/**
 	*
 	* @var \Vox\FrontController
@@ -19,6 +20,14 @@ class App {
 		if ($this->_config->getConfigFolder() == null) {
 			$this->setConfigFolder('../config');
 		}
+	}
+
+	public function getRouter() {
+		return $this->router;
+	}
+
+	public function setRouter($router) {
+		$this->router = $router;
 	}
 
 	public function setConfigFolder($path) {
@@ -43,6 +52,18 @@ class App {
 		}
 
 		$this->_frontController = \Vox\FrontController::getInstance();
+		
+		if ($this->router instanceof \Vox\Routers\IRouter) {
+			$this->_frontController->setRouter($this->router);
+		}
+		else if($this->router == 'JsonRPCRouter') {
+			$this->_frontController->setRouter(new \Vox\Routers\DefaultRouter());
+		} else if($this->router == 'CLIRouter') {
+			$this->_frontController->setRouter(new \Vox\Routers\DefaultRouter());
+		} else {
+			$this->_frontController->setRouter(new \Vox\Routers\DefaultRouter());
+		}
+
 		$this->_frontController->dispatch();
 	}
 

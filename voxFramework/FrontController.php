@@ -7,14 +7,26 @@ class FrontController {
 	private $ns = null;
 	private $controller = null;
 	private $method = null;
+	private $router = null;
 
 	private function __construct() {
 
 	}
 
+	public function getRouter() {
+		return $this->router;
+	}
+
+	public function setRouter(\Vox\Routers\IRouter $router) {
+		$this->router = $router;
+	}
+
 	public function dispatch() {
-		$a = new \Vox\Routers\DefaultRouter();
-		$_uri = $a->getURI();
+		if ($this->router == null) {
+			throw new \Exception('No valid router found', 500);
+		}
+
+		$_uri = $this->router->getURI();
 		$routes = \Vox\App::getInstance()->getConfig()->routes;
 		$_rc = null;
 
@@ -44,10 +56,10 @@ class FrontController {
 		$_params = explode('/', $_uri);
 
 		if ($_params[0]) {
-			$this->controller = $_params[0];
+			$this->controller = strtolower($_params[0]);
 
 			if ($_params[1]) {
-				$this->method = $_params[1];
+				$this->method = strtolower($_params[1]);
 			} else {
 				$this->method = $this->getDefaultMethod();
 			}
@@ -56,11 +68,22 @@ class FrontController {
 			$this->method = $this->getDefaultMethod();
 		}
 
-		if (is_array($_rc) && $_rc['controllers'] && $_rc['controllers'][$this->controller]) {
-			$this->controller = $_rc['controllers'][$this->controller];
+		if (is_array($_rc) && $_rc['controllers']) {
+			if ($_rc['controllers'][$this->controller]['methods'][$this->method]) {
+				$this->method = strtolower($_rc['controllers'][$this->controller]['methods'][$this->method]);
+			}
+
+			if (isset($_rc['controllers'][$this->controller]['to'])) {
+				$this->controller = strtolower($_rc['controllers'][$this->controller]['to']);
+			}
 		}
 
-		echo $this->controller;
+		$f = $this->ns . '\\' . ucfirst($this->controller);
+		echo $f;
+		$newController = new $f();
+
+		var_dump($newController);
+		$newController->{$this->method}();
 	}
 
 	/**
@@ -78,16 +101,16 @@ class FrontController {
 	public function getDefaultController() {
 		$controller = \Vox\App::getInstance()->getConfig()->app['default_controller'];
 		if ($controller) {
-			return $controller;
+			return strtolower($controller);
 		}
 
-		return 'Index';
+		return 'index';
 	}
 
 	public function getDefaultMethod() {
 		$method = \Vox\App::getInstance()->getConfig()->app['default_method'];
 		if ($method) {
-			return $method;
+			return strtolower($method);
 		}
 
 		return 'index';
