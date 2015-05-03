@@ -10,7 +10,8 @@ class FrontController {
 	}
 
 	public function dispatch() {
-
+		$a = new \Vox\Routers\DefaultRouter();
+		$a->parse();
 	}
 
 	/**
