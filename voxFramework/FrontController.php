@@ -11,20 +11,7 @@ class FrontController {
 
 	public function dispatch() {
 		$a = new \Vox\Routers\DefaultRouter();
-		$a->parse();
-
-		$controller = $a->getController();
-		$method = $a->getMethod();
-
-		if ($controller == null) {
-			$controller = $this->getDefaultController();
-		}
-
-		if ($method == null) {
-			$method = $this->getDefaultMethod();
-		}
-
-		echo $controller. "<br>" . $method;
+		
 	}
 
 	/**
