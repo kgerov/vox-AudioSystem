@@ -5,6 +5,12 @@
 	$app = \Vox\App::getInstance();
 	$app->run();
 
+	$db = new \Vox\DB\SimpleDB();
+
+	$a = $db->prepare('SELECT * FROM boom WHERE id=?')->execute(array(11))->fetchAllAssoc();
+	var_dump($a); 
+
+
 	//register Namespaces
 	//before run
 	//\Vox\Loader::registerNamespace(' Test\Models', '/Applications/XAMPP/htdocs/test/vox/voxApplication/models');

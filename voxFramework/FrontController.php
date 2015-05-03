@@ -79,10 +79,7 @@ class FrontController {
 		}
 
 		$f = $this->ns . '\\' . ucfirst($this->controller);
-		//echo $f;
 		$newController = new $f();
-
-		var_dump($newController);
 		$newController->{$this->method}();
 	}
 
