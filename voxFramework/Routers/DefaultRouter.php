@@ -4,7 +4,7 @@ namespace Vox\Routers;
 
 class DefaultRouter {
 	public function parse() {
-		$_uri = substr(str_replace($_SERVER['SCRIPT_NAME'], '', $_SERVER['PHP_SELF']), 1);
+		$_uri = substr($_SERVER['PHP_SELF'], strlen($_SERVER['SCRIPT_NAME']) + 1);
 		$controller = null;
 		$method = null;
 		$_params = explode('/', $_uri);
