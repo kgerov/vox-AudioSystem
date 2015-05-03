@@ -67,6 +67,10 @@ class App {
 		$this->_frontController->dispatch();
 	}
 
+	public function getConnection() {
+		
+	}
+
 	/**
 	*
 	* @return \Vox\App
