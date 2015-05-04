@@ -8,6 +8,7 @@ class App {
 	private $_config = null;
 	private $router = null;
 	private $_dbConnections = array();
+	private $_session = null;
 	/**
 	*
 	* @var \Vox\FrontController
@@ -65,7 +66,29 @@ class App {
 			$this->_frontController->setRouter(new \Vox\Routers\DefaultRouter());
 		}
 
+		$_sess = $this->getConfig()->app['session'];
+		if ($_sess['autostart']) {
+			if ($_sess['type'] == 'native') {
+				$_s = new \Vox\Sessions\NativeSession($_sess['name'], $_sess['lifetime'], $_sess['path'], $_sess['domain'], $_sess['secure']);
+			}
+
+			$this->setSession($_s);
+		}
+		
 		$this->_frontController->dispatch();
+	}
+
+	public function setSession(\Vox\Sessions\ISession $session) {
+		$this->_session = $session;
+	}
+
+	/**
+	*
+	* @return \Vox\Sessions\ISession
+	*/
+
+	public function getSession() {
+		return $this->_session;
 	}
 
 	public function getDBConnection($connection = 'default') {

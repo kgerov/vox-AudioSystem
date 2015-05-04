@@ -5,10 +5,13 @@
 	$app = \Vox\App::getInstance();
 	$app->run();
 
-	$db = new \Vox\DB\SimpleDB();
+	$app->getSession()->counter+=1;
+	var_dump($app->getSession()->counter);
 
-	$a = $db->prepare('SELECT * FROM boom WHERE id=?')->execute(array(11))->fetchAllAssoc();
-	var_dump($a); 
+	//Databse access
+	// $db = new \Vox\DB\SimpleDB();
+	// $a = $db->prepare('SELECT * FROM boom WHERE id=?')->execute(array(11))->fetchAllAssoc();
+	// var_dump($a); 
 
 
 	//register Namespaces
