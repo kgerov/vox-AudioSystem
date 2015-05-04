@@ -33,4 +33,4 @@ class NativeSession implements \Vox\Sessions\ISession {
 		$_SESSION[$name] = $value;
 	}
 
-}
+} 
