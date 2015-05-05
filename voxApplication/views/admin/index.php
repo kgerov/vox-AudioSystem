@@ -5,3 +5,5 @@ foreach ($this->c as $key => $value) {
 	echo $value;
 }
 ?>
+
+body

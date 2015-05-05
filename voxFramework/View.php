@@ -7,7 +7,9 @@ class View {
 	private $__viewPath = null;
 	private $__viewDir = null;
 	private $__extension = '.php';
-	private $data = array();
+	private $__data = array();
+	private $__layoutParts = array();
+	private $__layoutData  = array();
 
 	private function __construct() {
 		$this->__viewPath = \Vox\App::getInstance()->getConfig()->app['viewsDirectory'];
@@ -33,15 +35,37 @@ class View {
 		}
 	}
 
-	public function display($name, $data = array(), $returnAsString = false) {
-		if (is_array($data)) {
-			$this->data = array_merge($this->data, $data);
+	public function display($name, $__data = array(), $returnAsString = false) {
+		if (is_array($__data)) {
+			$this->__data = array_merge($this->__data, $__data);
+		}
+
+		if (count($this->__layoutParts) > 0) {
+			foreach ($this->__layoutParts as $k => $v) {
+				$r = $this->_includeFile($v);
+
+				if ($r) {
+					$this->__layoutData[$k] = $r;
+				}
+			}
 		}
 
 		if ($returnAsString) {
 			return $this->_includeFile($name);
 		} else {
 			echo $this->_includeFile($name);
+		}
+	}
+
+	public function getLayoutData($name) {
+		return $this->__layoutData[$name];
+	}
+
+	public function appendToLayout($key, $template) {
+		if ($key && $template) {
+			$this->__layoutParts[$key] = $template;
+		} else {
+			throw new \Exception('Layout required valid key and template', 500);
 		}
 	}
 
@@ -62,11 +86,11 @@ class View {
 	}
 
 	public function __set($name, $value) {
-		$this->data[$name] = $value;
+		$this->__data[$name] = $value;
 	}
 
 	public function __get($name) {
-		return $this->data[$name];
+		return $this->__data[$name];
 	}
 
 	/**

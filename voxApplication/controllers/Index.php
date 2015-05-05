@@ -4,11 +4,13 @@ namespace Controllers;
 
 class Index {
 	public function index() {
-		echo "default controller";
+		//echo "default controller";
 
 		$view = \Vox\View::getInstance();
 		$view->username = 'kgerov';
-		$view->display('admin.index', array('c' => array(1,2,3,4,4))); 
+		$view->appendToLayout('body', 'admin.index');
+		$view->appendToLayout('body2', 'index');
+		$view->display('layouts.default2', array('c' => array(1,2,3,4,4))); 
 	}
 }
 
