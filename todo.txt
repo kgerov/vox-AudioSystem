@@ -1,1 +1,2 @@
 1. Fingerprint for DBSessions (takes the user specific browser, plugins, etc). Prevents session hijacking
+2. Test
