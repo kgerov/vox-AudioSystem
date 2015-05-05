@@ -1,6 +1,5 @@
 <?php
 
-
 namespace Vox\Sessions;
 
 class DBSessions extends \Vox\DB\SimpleDB implements \Vox\Sessions\ISession {
@@ -10,7 +9,7 @@ class DBSessions extends \Vox\DB\SimpleDB implements \Vox\Sessions\ISession {
 	private $path;
 	private $domain;
 	private $secure;
-	private $sessionId;
+	private $sessionId = null;
 	private $sessionData = array();
 
 	public function __construct($dbconnection, $name, $tableName = 'sessions', $lifetime = 3600, $path = null, $domain = null, $secure = false) {
@@ -22,6 +21,10 @@ class DBSessions extends \Vox\DB\SimpleDB implements \Vox\Sessions\ISession {
 		$this->domain = $domain;
 		$this->secure = $secure;
 		$this->sessionId = $_COOKIE[$name];
+
+		if (rand(0, 50) == 1) {
+			$this->_gc();
+		}
 
 		if (strlen($this->sessionId) < 32) {
 			$this->_startNewSession();
@@ -53,20 +56,23 @@ class DBSessions extends \Vox\DB\SimpleDB implements \Vox\Sessions\ISession {
 	}
 
 	public function getSessionId() {
-
+		return $this->sessionId;
 	}
 
 	public function saveSession() {
 		if ($this->sessionId) {
 			$this->prepare('UPDATE ' . $this->tableName . ' SET sess_data=?,valid_until=? WHERE sessid=?',
-				array(serialize($this->sessionData), (time() + $this->lifetime), $this->session_id()))->execute();
+				array(serialize($this->sessionData), (time() + $this->lifetime), $this->sessionId))->execute();
 
 			setcookie($this->sessionName, $this->sessionId, (time() + $this->lifetime), $this->path, $this->domain, $this->secure, true);
 		}
 	}
 
 	public function destroySession() {
-
+		if ($this->sessionId) {
+			$this->prepare('DELETE FROM ' . $this->tableName . ' WHERE sessid=?',
+				array($this->sessionId))->execute();
+		}
 	}
 
 	public function __get($name) {
@@ -77,4 +83,8 @@ class DBSessions extends \Vox\DB\SimpleDB implements \Vox\Sessions\ISession {
 		$this->sessionData[$name] = $value;
 	}
 
+	private function _gc() {
+		$this->prepare('DELETE FROM ' . $this->tableName . ' WHERE valid_until<?',
+			array(time()))->execute();
+	}
 }

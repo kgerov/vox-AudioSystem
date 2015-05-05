@@ -120,7 +120,7 @@ class App {
 		return $dbh; 
 	}
 
-	public function __desctruct() {
+	public function __destruct() {
 		if ($this->_session != null) {
 			$this->_session->saveSession();
 		}

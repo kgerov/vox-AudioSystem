@@ -6,8 +6,8 @@
 	$app->run();
 
 
-	$app->getSession()->counter+=1;
-	var_dump($app->getSession()->counter);
+	$app->getSession()->counter2+=1;
+	var_dump($app->getSession()->counter2);
 
 	//Native Sessions
 	// $app->getSession()->counter+=1;
