@@ -67,11 +67,12 @@ class App {
 		}
 
 		$_sess = $this->getConfig()->app['session'];
+
 		if ($_sess['autostart']) {
 			if ($_sess['type'] == 'native') {
 				$_s = new \Vox\Sessions\NativeSession($_sess['name'], $_sess['lifetime'], $_sess['path'], $_sess['domain'], $_sess['secure']);
 			} else if ($_sess['type'] == 'database') {
-				$_s = new \Vox\Sessions\NativeSession($_sess['dbConnection'], $_sess['name'],
+				$_s = new \Vox\Sessions\DBSessions($_sess['dbConnection'], $_sess['name'],
 					$_sess['dbTable'], $_sess['lifetime'], $_sess['path'], $_sess['domain'], $_sess['secure']);
 			} else {
 				throw new \Exception('No valid session', 500);
@@ -117,6 +118,12 @@ class App {
 		$this->_dbConnections[$connection] = $dbh;
 
 		return $dbh; 
+	}
+
+	public function __desctruct() {
+		if ($this->_session != null) {
+			$this->_session->saveSession();
+		}
 	}
 
 	/**

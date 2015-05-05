@@ -15,12 +15,12 @@ class DBSessions extends \Vox\DB\SimpleDB implements \Vox\Sessions\ISession {
 
 	public function __construct($dbconnection, $name, $tableName = 'sessions', $lifetime = 3600, $path = null, $domain = null, $secure = false) {
 		parent::__construct($dbconnection);
-		$this->sessionName = $name
-		$this->tableName = $tableName
-		$this->lifetime = $lifetime
-		$this->path = $path
-		$this->domain = $domain
-		$this->secure = $secure
+		$this->sessionName = $name;
+		$this->tableName = $tableName;
+		$this->lifetime = $lifetime;
+		$this->path = $path;
+		$this->domain = $domain;
+		$this->secure = $secure;
 		$this->sessionId = $_COOKIE[$name];
 
 		if (strlen($this->sessionId) < 32) {
@@ -31,9 +31,11 @@ class DBSessions extends \Vox\DB\SimpleDB implements \Vox\Sessions\ISession {
 	}
 
 	private function _startNewSession() {
-		$this->sessioId = md5(uniqid('gf', TRUE));
+		$this->sessionId = md5(uniqid('gf', TRUE));
 		$this->prepare('INSERT INTO ' . $this->tableName . ' (sessid,valid_until) VALUES (?,?)',
 			array($this->sessionId, (time() + $this->lifetime)))->execute();
+
+		setcookie($this->sessionName, $this->sessionId, (time() + $this->lifetime), $this->path, $this->domain, $this->secure, true);
 	}
 
 	private function _validateSession() {
@@ -55,7 +57,12 @@ class DBSessions extends \Vox\DB\SimpleDB implements \Vox\Sessions\ISession {
 	}
 
 	public function saveSession() {
+		if ($this->sessionId) {
+			$this->prepare('UPDATE ' . $this->tableName . ' SET sess_data=?,valid_until=? WHERE sessid=?',
+				array(serialize($this->sessionData), (time() + $this->lifetime), $this->session_id()))->execute();
 
+			setcookie($this->sessionName, $this->sessionId, (time() + $this->lifetime), $this->path, $this->domain, $this->secure, true);
+		}
 	}
 
 	public function destroySession() {
@@ -63,11 +70,11 @@ class DBSessions extends \Vox\DB\SimpleDB implements \Vox\Sessions\ISession {
 	}
 
 	public function __get($name) {
-
+		return $this->sessionData[$name];
 	}
 
 	public function __set($name, $value) {
-
+		$this->sessionData[$name] = $value;
 	}
 
 }
