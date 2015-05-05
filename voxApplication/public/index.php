@@ -5,8 +5,12 @@
 	$app = \Vox\App::getInstance();
 	$app->run();
 
-	$app->getSession()->counter+=1;
-	var_dump($app->getSession()->counter);
+
+
+
+	//Native Sessions
+	// $app->getSession()->counter+=1;
+	// var_dump($app->getSession()->counter);
 
 	//Databse access
 	// $db = new \Vox\DB\SimpleDB();
