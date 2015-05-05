@@ -4,16 +4,16 @@ namespace Vox;
 
 class View {
 	private static $_instance = null;
-	private $viewPath = null;
-	private $viewDir = null;
-	private $extension = '.php';
+	private $__viewPath = null;
+	private $__viewDir = null;
+	private $__extension = '.php';
 	private $data = array();
 
 	private function __construct() {
-		$this->viewPath = \Vox\App::getInstance()->getConfig()->app['viewsDirectory'];
+		$this->__viewPath = \Vox\App::getInstance()->getConfig()->app['viewsDirectory'];
 
-		if ($this->viewPath == null) {
-			$this->viewPath = realpath('../views/');
+		if ($this->__viewPath == null) {
+			$this->__viewPath = realpath('../views/');
 		}
 	}
 
@@ -24,7 +24,7 @@ class View {
 			$path = realpath($path) . DIRECTORY_SEPARATOR;
 
 			if (is_dir($path) && is_readable($path)) {
-				$this->viewDir = $path;
+				$this->__viewDir = $path;
 			} else {
 				throw new \Exception('view path', 500);
 			}
@@ -45,20 +45,19 @@ class View {
 		}
 	}
 
-	private function _includeFile($file) {
-		if ($this->viewDir == null) {
-			$this->setViewDirectory($this->viewPath);
+	private function _includeFile($___file) {
+		if ($this->__viewDir == null) {
+			$this->setViewDirectory($this->__viewPath);
 		}
 
-		$p = str_replace('.', DIRECTORY_SEPARATOR, $file);
-		$fl = $this->viewDir . $p . $this->extension;
+		$___fl = $this->__viewDir . (str_replace('.', DIRECTORY_SEPARATOR, $___file)) . $this->__extension;
 
-		if (file_exists($fl) && is_readable($fl)) {
+		if (file_exists($___fl) && is_readable($___fl)) {
 			ob_start();
-			include $fl;
+			include $___fl;
 			return ob_get_clean();
 		} else {
-			throw new \Exception('View ' . $file . ' cannot be included', 500);
+			throw new \Exception('View ' . $___file . ' cannot be included', 500);
 		}
 	}
 
