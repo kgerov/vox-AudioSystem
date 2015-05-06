@@ -2,6 +2,7 @@
 
 $cnf['default_controller'] = 'Index';
 $cnf['default_method'] = 'index';
+$cnf['displayExceptions'] = true;
 $cnf['namespaces']['Controllers'] = '/Applications/XAMPP/htdocs/test/vox/voxApplication/controllers/';
 
 $cnf['session']['autostart'] = true;

@@ -1,0 +1,106 @@
+
+body {
+	color: @text-color;
+	font-family: @base-font-family;
+	padding-top: 70px;
+}
+
+h1, h2, h3, h4, h5, h6 {
+	font-family: @base-font-family;
+	color: @heading-color;
+	font-weight: 300;
+	text-transform: capitalize;
+}
+
+a {
+	color: @link-color;
+	&:hover, &:focus {
+		color: darken(@link-color, 10%);
+		text-decoration: none;
+	}
+}
+
+// Full width wrappers
+//-------------------------------------------------
+
+.wrapper-sm {
+	width: auto;
+	padding: 20px 0;
+}
+.wrapper-lg {
+	width: auto;
+	padding: 80px 0;
+}
+
+// Modifiers 
+//-------------------------------------------------
+.bg-slider {
+	text-align: center;
+	background: url(../../img/header_background-1.jpg) center center;
+	.background-size(cover);
+}
+.bg-primary {
+	color: #fff;
+	h1, h2, h3, h4, h5, h6 {
+		color: #fff;
+	}
+	background: @primary;
+}
+.bg-secondary {
+	color: #8e959c;
+	h1, h2, h3, h4, h5, h6 {
+		color: #fff;
+	}
+	background: @secondary;
+}
+.bg-alt {
+	background: @grey;
+	border-top: 1px solid darken(@grey, 5%);
+	border-bottom: 1px solid darken(@grey, 5%);
+}
+
+// Spacer line breaks
+//-------------------------------------------------
+br[class*="spacer"] {
+	display: block;
+	content: " ";
+}
+.spacer-xs {
+	margin-bottom: 10px;
+	line-height: 10px; // IE
+}
+.spacer-sm {
+	margin-bottom: 20px;
+	line-height: 20px; // IE
+}
+.spacer-md {
+	margin-bottom: 40px;
+	line-height: 40px; // IE
+}
+.spacer-lg {
+	margin-bottom: 60px;
+	line-height: 60px; // IE
+}
+.spacer-xl {
+	margin-bottom: 80px;
+	line-height: 80px; // IE
+}
+
+.ad-banners {
+	list-style: none;
+	padding-left: 0;
+	text-align: center;
+	li {
+		max-width: 	230px;
+		display: inline-block;
+		padding: 10px;
+		border: 1px solid @border-color;
+		background-color: #fff;
+		margin-bottom: 15px;
+		.box-shadow(0 0 5px 2px rgba(0,0,0,0.05));
+		img {
+			width: 100%;
+			padding-bottom: 10px;
+		}
+	}
+}

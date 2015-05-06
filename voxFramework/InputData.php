@@ -78,7 +78,7 @@ class InputData {
 	*/
 	public static function getInstance() {
 		if (self::$_instance == null) {
-			self::$instance = new \Vox\InputData();
+			self::$_instance = new \Vox\InputData();
 		}
 
 		return self::$_instance;

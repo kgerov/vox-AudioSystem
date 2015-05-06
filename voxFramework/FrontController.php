@@ -53,6 +53,7 @@ class FrontController {
 			throw new \Exception('Default route missing', 500);
 		}
 
+		$input = \Vox\InputData::getInstance();
 		$_params = explode('/', $_uri);
 
 		if ($_params[0]) {
@@ -60,6 +61,8 @@ class FrontController {
 
 			if ($_params[1]) {
 				$this->method = strtolower($_params[1]);
+				unset($_params[0], $_params[1]);
+				$input->setGet(array_values($_params));
 			} else {
 				$this->method = $this->getDefaultMethod();
 			}
@@ -77,6 +80,8 @@ class FrontController {
 				$this->controller = strtolower($_rc['controllers'][$this->controller]['to']);
 			}
 		}
+
+		$input->setPost($this->router->getPost());
 
 		$f = $this->ns . '\\' . ucfirst($this->controller);
 		$newController = new $f();
