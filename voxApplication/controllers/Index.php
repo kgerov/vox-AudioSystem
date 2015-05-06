@@ -6,6 +6,17 @@ class Index {
 	public function index() {
 		//echo "default controller";
 
+		$val = new \Vox\Validation();
+		$val->setRule('url', 'http://azc.com', '', 'wrong url')->setRule('minlength', 'http://azc.com', 5);
+		var_dump($val->validate());
+		print_r($val->getErrors());
+
+		$val->setRule('custom', 4, function($a) {
+			return $a%2 == 0;
+		});
+		var_dump($val->validate());
+		print_r($val->getErrors());
+
 		$view = \Vox\View::getInstance();
 		$view->username = 'kgerov';
 		$view->appendToLayout('body', 'admin.index');
