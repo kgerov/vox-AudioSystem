@@ -16,7 +16,7 @@ class App {
 	private $_frontController = null;
 
 	private function __construct() {
-		set_exception_handler(array($this, '_thisExceptionHandler');
+		set_exception_handler(array($this, '_exceptionHandler'));
 		\Vox\Loader::registerNamespace('Vox', dirname(__FILE__).DIRECTORY_SEPARATOR);
 		\Vox\Loader::registerAutoload();
 		$this->_config = \Vox\Config::getInstance();
@@ -137,10 +137,10 @@ class App {
 
      public function displayError($error) {
         try {
-            $view = \GF\View::getInstance();
+            $view = \Vox\View::getInstance();
             $view->display('errors.' . $error);
         } catch (\Exception $exc) {
-            \GF\Common::headerStatus($error);
+            \Vox\Common::headerStatus($error);
             echo '<h1>' . $error . '</h1>';
             exit;
         }

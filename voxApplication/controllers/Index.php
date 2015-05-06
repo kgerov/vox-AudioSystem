@@ -2,12 +2,18 @@
 
 namespace Controllers;
 
-class Index {
+class Index extends \Vox\DefaultController {
 	public function index() {
 		//echo "default controller";
 
+		//$this->app->displayError(404);
+		exit;
+
+
 		$a = \Vox\InputData::getInstance()->get(0, 'int');
 		echo $a;
+
+
 		$val = new \Vox\Validation();
 		$val->setRule('url', 'http://azc.com', '', 'wrong url')->setRule('minlength', 'http://azc.com', 5);
 		//var_dump($val->validate());
