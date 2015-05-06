@@ -7,7 +7,7 @@ class Index extends \Vox\DefaultController {
 		//echo "default controller";
 
 		//$this->app->displayError(404);
-		exit;
+		//exit;
 
 
 		$a = \Vox\InputData::getInstance()->get(0, 'int');
