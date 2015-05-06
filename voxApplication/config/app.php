@@ -3,10 +3,10 @@
 $cnf['default_controller'] = 'Index';
 $cnf['default_method'] = 'index';
 $cnf['displayExceptions'] = true;
-$cnf['namespaces']['Controllers'] = '/Applications/XAMPP/htdocs/test/vox/voxApplication/controllers/';
+$cnf['namespaces']['Controllers'] = '/Applications/XAMPP/htdocs/vox/voxApplication/controllers/';
 
 $cnf['session']['autostart'] = true;
-$cnf['session']['type'] = 'database'; //original: 'native'
+$cnf['session']['type'] = 'native'; //original: 'native'
 $cnf['session']['name'] = '__sess';
 $cnf['session']['lifetime'] = 3600;
 $cnf['session']['path'] = '/';

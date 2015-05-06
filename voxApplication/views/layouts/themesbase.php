@@ -6,12 +6,12 @@
 		<title>Vox</title>
 		<meta name="description" content="">
 		<meta name="viewport" content="width=device-width">
-		<link rel="stylesheet" href="../public/assets/styles/css/bootstrap.min.css">
-		<link rel="stylesheet" href="../public/assets/font-awesome/css/font-awesome.css">
-		<link rel="stylesheet" href="../public/assets/styles/css/style.css">
+		<link rel="stylesheet" href="/vox/voxApplication/public/assets/styles/css/bootstrap.min.css">
+		<link rel="stylesheet" href="/vox/voxApplication/public/assets/font-awesome/css/font-awesome.css">
+		<link rel="stylesheet" href="/vox/voxApplication/public/assets/styles/css/style.css">
 		<!--[if lt IE 9]>
-			<script src="../public/assets/js/html5shiv.js"></script>
-			<script src="../public/assets/js/respond.min.js"></script>
+			<script src="/vox/voxApplication/public/assets/js/html5shiv.js"></script>
+			<script src="/vox/voxApplication/public/assets/js/respond.min.js"></script>
 		<![endif]-->
 		<style type="text/css">
 			.myNav {
@@ -31,7 +31,7 @@
 						<span class="icon-bar"></span>
 					</button>
 					<a class="navbar-brand" href="index.html">
-						<img src="../public/assets/img/logo.png" alt="logo">
+						<img src="/vox/voxApplication/public/assets/img/logo.png" alt="logo">
 						Vox
 					</a>
 				</div>
@@ -68,6 +68,9 @@
 			</div>
 		</section>
 
+		<main><?=$this->getLayoutData('body');?></main>
+		<main><?=$this->getLayoutData('body2');?></main>
+
 		<footer class="wrapper-sm bg-secondary">
 			<div class="container">
 				<div class="row">
@@ -79,7 +82,7 @@
 		</footer>
 
 		<script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.0/jquery.min.js"></script>
-		<script>window.jQuery || document.write('<script src="../public/assets/js/jquery-1.8.0.min.js"><\/script>')</script>
-		<script src="../public/assets/js/bootstrap.min.js"></script>
+		<script>window.jQuery || document.write('<script src="/vox/voxApplication/public/assets/js/jquery-1.8.0.min.js"><\/script>')</script>
+		<script type="text/javascript" src="/vox/voxApplication/public/assets/js/bootstrap.min.js"></script>
 	</body>
 </html>

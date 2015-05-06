@@ -2,16 +2,14 @@
 <html>
 <head>
 	<meta charset="utf-8">
-	<title><?php echo $this->title; ?></title>
+	<title></title>
 </head>
 <body>
 	<header>
 
 	</header>
-
-	<body><?=$this->getLayoutData('body2');?></body>
-	<hr>
-	<body><?=$this->getLayoutData('body');?></body>
+	<img src="/vox/voxApplication/public/assets/img/logo.png " alt="logo">
+	
 
 	<footer>
 

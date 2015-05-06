@@ -2,7 +2,7 @@
 
 namespace Controllers;
 
-class Index extends \Vox\DefaultController {
+class Index extends \Controllers\BaseController {
 	public function index() {
 		//echo "default controller";
 
@@ -25,11 +25,16 @@ class Index extends \Vox\DefaultController {
 		//var_dump($val->validate());
 		//print_r($val->getErrors());
 
-		$view = \Vox\View::getInstance();
-		$view->username = 'kgerov';
-		$view->appendToLayout('body', 'admin.index');
-		$view->appendToLayout('body2', 'index');
-		$view->display('layouts.themesbase', array('c' => array(1,2,3,4,4))); 
+		//$view = \Vox\View::getInstance();
+		$this->view->username = 'kgerov';
+		//$this->view->appendToLayout('body', 'admin.index');
+		$this->view->appendToLayout('body2', 'index');
+		$this->view->display('layouts.themesbase', array('c' => array(1,2,3,4,4)));
+
+		$ab = $this->input->post("user");
+		if (isset($ab)) {
+			echo "<h1>" . $ab . "</h1>"; 
+		}
 	}
 }
 
