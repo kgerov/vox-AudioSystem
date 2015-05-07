@@ -46,7 +46,7 @@
 						<span class="icon-bar"></span>
 						<span class="icon-bar"></span>
 					</button>
-					<a class="navbar-brand" href="index.html">
+					<a class="navbar-brand" href="/vox/voxApplication/public/index.php/songs">
 						<img src="/vox/voxApplication/public/assets/img/logo.png" alt="logo">
 						Vox
 					</a>
@@ -56,9 +56,11 @@
 						<li class="active"><a href="/vox/voxApplication/public/index.php/songs">Songs</a></li>
 						<li><a href="/vox/voxApplication/public/index.php/playlists">Playlists</a></li>
 						<li><a href="/vox/voxApplication/public/index.php/genres">Genres</a></li>
+						<li><a href="/vox/voxApplication/public/index.php/songs/mysongs">Trending</a></li>
+						<?php if ($this->username): ?>
 						<li><a href="/vox/voxApplication/public/index.php/songs/mysongs">My Songs</a></li>
 						<li><a href="/vox/voxApplication/public/index.php/songs/mysongs">My Playlists</a></li>
-						<li><a href="/vox/voxApplication/public/index.php/songs/mysongs">Trending</a></li>
+						<?php endif; ?>
 					</ul>
 				</div><!-- /.navbar-collapse -->
 			</div>
@@ -96,7 +98,7 @@
 		<script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.0/jquery.min.js"></script>
 		<script>window.jQuery || document.write('<script src="/vox/voxApplication/public/assets/js/jquery-1.8.0.min.js"><\/script>')</script>
 		<script type="text/javascript" src="/vox/voxApplication/public/assets/js/bootstrap.min.js"></script>
-		<script type="text/javascript" src="js/noty/packaged/jquery.noty.packaged.min.js"></script>
+		<script type="text/javascript" src="/vox/voxApplication/public/js/noty/packaged/jquery.noty.packaged.min.js"></script>
 
 		<script type="text/javascript">
 		var Client_ID = '8291464f6b2fb0824953670f99fe23eb';

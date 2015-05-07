@@ -15,6 +15,11 @@ $cnf['*']['controllers']['songs']['methods']['upload'] = 'upload';
 $cnf['*']['controllers']['login']['to'] = 'Login';
 $cnf['*']['controllers']['logout']['to'] = 'Logout';
 
+
+$cnf['*']['controllers']['profile']['to'] = 'Profile';
+$cnf['*']['controllers']['profile']['methods']['view'] = 'index';
+$cnf['*']['controllers']['profile']['methods']['edit'] = 'edit';
+
 return $cnf;
 
 //$cnf['admin/users']['namespace'] = 'Controllers/Admin1';

@@ -29,17 +29,17 @@ class Login extends \Controllers\BaseController {
 
 		if (isset($newUsername) && isset($email) && isset($pass1) && isset($pass2)) {
 			if ($pass1 != $pass2) {
-				
+				echo "<script>alert('Passwords do not match')</script>";
 			}
 
-			$response = $userModel->login($username, md5($pass));
-			if ($response[0]['username']) {
+			$response = $userModel->register($newUsername, $email, md5($pass1));
+			if ($response != 0) {
 				$this->app->getSession()->isLoggedIn = true;
-				$this->app->getSession()->username = $response[0]['username'];
+				$this->app->getSession()->username = $newUsername;
 				header('Location: /vox/voxApplication/public/index.php/songs');
 				exit;
 			} else {
-				echo "<script>alert('Invalid login')</script>";
+				echo "<script>alert('Invalid registration')</script>";
 			}
 		}
 
