@@ -27,19 +27,19 @@
 						<fieldset>
 							<div class="form-group">
 								<label for="createEmail">Your email</label>
-								<input class="form-control" type="text" id="createEmail" placeholder="Email">
+								<input class="form-control" type="text" name="email" id="createEmail" placeholder="Email">
 							</div>
 							<div class="form-group">
 								<label for="createUsername">Your username</label>
-								<input class="form-control" type="text" id="createUsername" placeholder="Username">
+								<input class="form-control" type="text" name="newUsername" id="createUsername" placeholder="Username">
 							</div>
 							<div class="form-group">
 								<label for="createPassword">Create a password</label>
-								<input class="form-control" type="password" id="createPassword" placeholder="Password">
+								<input class="form-control" type="password" name="password" id="createPassword" placeholder="Password">
 							</div>
 							<div class="form-group">
 								<label for="confirmPassword">Confirm password</label>
-								<input class="form-control" type="password" id="confirmPassword" placeholder="Password">
+								<input class="form-control" type="password" name="passwordConfirm" id="confirmPassword" placeholder="Password">
 							</div>
 							<div class="form-group">
 								<button type="submit" class="btn btn-default">Create account</button>

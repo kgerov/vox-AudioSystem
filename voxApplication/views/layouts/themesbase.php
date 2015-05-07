@@ -7,7 +7,7 @@
 		<meta name="description" content="">
 		<meta name="viewport" content="width=device-width">
 		<link rel="stylesheet" href="/vox/voxApplication/public/assets/styles/css/bootstrap.min.css">
-		<link rel="stylesheet" href="/vox/voxApplication/public/assets/font-awesome/css/font-awesome.css">
+		<link rel="stylesheet" href="/vox/voxApplication/public/assets/font-awesome/css/font-awesome.min.css">
 		<link rel="stylesheet" href="/vox/voxApplication/public/assets/styles/css/style.css">
 		<!--[if lt IE 9]>
 			<script src="/vox/voxApplication/public/assets/js/html5shiv.js"></script>
@@ -96,6 +96,8 @@
 		<script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.0/jquery.min.js"></script>
 		<script>window.jQuery || document.write('<script src="/vox/voxApplication/public/assets/js/jquery-1.8.0.min.js"><\/script>')</script>
 		<script type="text/javascript" src="/vox/voxApplication/public/assets/js/bootstrap.min.js"></script>
+		<script type="text/javascript" src="js/noty/packaged/jquery.noty.packaged.min.js"></script>
+
 		<script type="text/javascript">
 		var Client_ID = '8291464f6b2fb0824953670f99fe23eb';
 
@@ -114,8 +116,8 @@
 						document.getElementById('sgenre').value = result.genre;
 						document.getElementById('sid').value = result.id;
 						//$(".videowrapper, .exhibitions-image, iframe").replaceWith('<iframe width="100%" height="100%" scrolling="no" frameborder="no" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/' + result.id +'&amp;color=ff6600&amp;auto_play=false&amp;show_artwork=true"></iframe>');
-				}
-
-);}</script>
+				});
+		}
+	</script>
 	</body>
 </html>

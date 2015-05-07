@@ -22,6 +22,28 @@ class Login extends \Controllers\BaseController {
 		}
 
 
+		$newUsername = $this->input->post("newUsername");
+		$email = $this->input->post("email");
+		$pass1 = $this->input->post("password");
+		$pass2 = $this->input->post("passwordConfirm");
+
+		if (isset($newUsername) && isset($email) && isset($pass1) && isset($pass2)) {
+			if ($pass1 != $pass2) {
+				
+			}
+
+			$response = $userModel->login($username, md5($pass));
+			if ($response[0]['username']) {
+				$this->app->getSession()->isLoggedIn = true;
+				$this->app->getSession()->username = $response[0]['username'];
+				header('Location: /vox/voxApplication/public/index.php/songs');
+				exit;
+			} else {
+				echo "<script>alert('Invalid login')</script>";
+			}
+		}
+
+
 		$this->view->appendToLayout('body', 'login');
 		$this->view->display('layouts.themesbase');
 	}
