@@ -25,6 +25,10 @@
 			.upload-btn button {
 				width: 100%;
 			}
+
+			footer {
+				margin-top: 10%;
+			}
 		</style>
 	</head>
 
@@ -70,7 +74,7 @@
 			<div class="container">
 				<div class="row">
 					<div class="col-lg-12">
-						<i class="icon icon-user"></i> Hello, Guest. <a class="btn btn-login" href="login.html">Login here &raquo;</a>
+						<i class="icon icon-user"></i> Hello, Guest. <a class="btn btn-login" href="/vox/voxApplication/public/index.php/login">Login here &raquo;</a>
 					</div>
 				</div>
 			</div>

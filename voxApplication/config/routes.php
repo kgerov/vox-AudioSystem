@@ -12,6 +12,8 @@ $cnf['*']['controllers']['songs']['to'] = 'Song';
 $cnf['*']['controllers']['songs']['methods']['list'] = 'index';
 $cnf['*']['controllers']['songs']['methods']['upload'] = 'upload';
 
+$cnf['*']['controllers']['login']['to'] = 'Login';
+
 return $cnf;
 
 //$cnf['admin/users']['namespace'] = 'Controllers/Admin1';
