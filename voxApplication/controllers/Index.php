@@ -8,7 +8,7 @@ class Index extends \Controllers\BaseController {
 
 		//$this->app->displayError(404);
 		//exit;
-
+		
 
 		$a = \Vox\InputData::getInstance()->get(0, 'int');
 		echo $a;
@@ -28,8 +28,8 @@ class Index extends \Controllers\BaseController {
 		//$view = \Vox\View::getInstance();
 		$this->view->username = 'kgerov';
 		//$this->view->appendToLayout('body', 'admin.index');
-		$this->view->appendToLayout('body2', 'index');
-		$this->view->display('layouts.themesbase', array('c' => array(1,2,3,4,4)));
+		//$this->view->appendToLayout('body2', 'index');
+		//$this->view->display('layouts.themesbase', array('c' => array(1,2,3,4,4)));
 
 		$ab = $this->input->post("user");
 		if (isset($ab)) {

@@ -69,7 +69,6 @@
 		</section>
 
 		<main><?=$this->getLayoutData('body');?></main>
-		<main><?=$this->getLayoutData('body2');?></main>
 
 		<footer class="wrapper-sm bg-secondary">
 			<div class="container">

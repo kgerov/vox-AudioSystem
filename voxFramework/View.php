@@ -40,6 +40,10 @@ class View {
 			$this->__data = array_merge($this->__data, $__data);
 		}
 
+		array_walk_recursive($this->__data, function (&$value) {
+			$value = htmlspecialchars($value, ENT_QUOTES, 'UTF-8');
+		});
+
 		if (count($this->__layoutParts) > 0) {
 			foreach ($this->__layoutParts as $k => $v) {
 				$r = $this->_includeFile($v);

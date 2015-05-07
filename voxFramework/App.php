@@ -127,12 +127,13 @@ class App {
 		}
 	}
 
-	 public function _exceptionHandler(\Exception $ex) {        
-        if ($this->_config && $this->_config->app['displayExceptions'] == true) {
-            echo '<pre>' . print_r($ex, true) . '</pre>';
-        } else {
-            $this->displayError($ex->getCode());
-        }
+	 public function _exceptionHandler(\Exception $ex) {
+	 	echo $ex;  
+        // if ($this->_config && $this->_config->app['displayExceptions'] == true) {
+        //     echo '<pre>' . print_r($ex, true) . '</pre>';
+        // } else {
+        //     $this->displayError($ex->getCode());
+        // }
     }
 
      public function displayError($error) {
