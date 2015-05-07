@@ -13,8 +13,8 @@ $cnf['session']['lifetime'] = 3600;
 $cnf['session']['path'] = '/';
 $cnf['session']['domain'] = '';
 $cnf['session']['secure'] = false;
-$cnf['session']['dbConnection'] = 'session'; // original: remove this line
-$cnf['session']['dbTable'] = 'sessions'; // original: remove this line
+// $cnf['session']['dbConnection'] = 'session'; // original: remove this line
+// $cnf['session']['dbTable'] = 'sessions'; // original: remove this line
 
 $cnf['ss'] = 'sssecret';
 

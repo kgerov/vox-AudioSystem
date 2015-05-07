@@ -3,7 +3,7 @@
 				<div class="col-sm-6">
 					<h2>Log in <small>Returning Visitors</small></h2>
 					<br class="spacer-lg">
-					<form>
+					<form method="POST">
 						<fieldset>
 							<div class="form-group">
 								<label for="loginEmail">Email or Username</label>
@@ -23,7 +23,7 @@
 				<div class="col-sm-6">
 					<h2>Create an account <small>New Visitors</small></h2>
 					<br class="spacer-lg">
-					<form>
+					<form method="POST">
 						<fieldset>
 							<div class="form-group">
 								<label for="createEmail">Your email</label>

@@ -26,6 +26,10 @@
 				width: 100%;
 			}
 
+			.btn-user {
+				margin-left: 2%;
+			}
+
 			footer {
 				margin-top: 10%;
 			}
@@ -50,21 +54,11 @@
 				<div class="collapse navbar-collapse navbar-ex1-collapse myNav">
 					<ul class="nav navbar-nav">
 						<li class="active"><a href="/vox/voxApplication/public/index.php/songs">Songs</a></li>
-						<li><a href="/vox/voxApplication/public/index.php/songs">Playlists</a></li>
-						<li><a href="/vox/voxApplication/public/index.php/songs">Genres</a></li>
-						<li><a href="/vox/voxApplication/public/index.php/songs">Profile</a></li>
-						<li><a href="portfolio.html">Portfolio</a></li>
-						<li><a href="contact.html">Contact</a></li>
-						<li class="dropdown">
-							<a href="#" class="dropdown-toggle" data-toggle="dropdown">Dropdown <b class="caret"></b></a>
-							<ul class="dropdown-menu">
-								<li><a href="#">Action</a></li>
-								<li><a href="#">Another action</a></li>
-								<li><a href="#">Something else here</a></li>
-								<li><a href="#">Separated link</a></li>
-								<li><a href="#">One more separated link</a></li>
-							</ul>
-						</li>
+						<li><a href="/vox/voxApplication/public/index.php/playlists">Playlists</a></li>
+						<li><a href="/vox/voxApplication/public/index.php/genres">Genres</a></li>
+						<li><a href="/vox/voxApplication/public/index.php/songs/mysongs">My Songs</a></li>
+						<li><a href="/vox/voxApplication/public/index.php/songs/mysongs">My Playlists</a></li>
+						<li><a href="/vox/voxApplication/public/index.php/songs/mysongs">Trending</a></li>
 					</ul>
 				</div><!-- /.navbar-collapse -->
 			</div>
@@ -73,8 +67,15 @@
 		<section class="wrapper-sm bg-primary">
 			<div class="container">
 				<div class="row">
-					<div class="col-lg-12">
-						<i class="icon icon-user"></i> Hello, Guest. <a class="btn btn-login" href="/vox/voxApplication/public/index.php/login">Login here &raquo;</a>
+					<div class="col-lg-11">
+						<i class="icon icon-user"></i> Hello, <?php echo ($this->username ? $this->username : 'Guest.'); 
+						if(!$this->username) { echo '<a class="btn btn-login btn-user" href="/vox/voxApplication/public/index.php/login">Login here &raquo;</a>';}
+						else {echo '<a class="btn btn-login btn-user" href="/vox/voxApplication/public/index.php/profile">Profile &raquo;</a>';} ?>
+					</div>
+					<div class="col-lg-1">
+						<?php 
+						if($this->username) echo '<a class="btn btn-warning" href="/vox/voxApplication/public/index.php/logout">Logout &raquo;</a>';
+						?>
 					</div>
 				</div>
 			</div>
