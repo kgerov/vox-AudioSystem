@@ -79,9 +79,30 @@
 				</div>
 			</div>
 		</footer>
-
+		
 		<script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.0/jquery.min.js"></script>
 		<script>window.jQuery || document.write('<script src="/vox/voxApplication/public/assets/js/jquery-1.8.0.min.js"><\/script>')</script>
 		<script type="text/javascript" src="/vox/voxApplication/public/assets/js/bootstrap.min.js"></script>
+		<script type="text/javascript">
+		var Client_ID = '8291464f6b2fb0824953670f99fe23eb';
+
+		function autofill() {
+			var trackUrl = document.getElementById('slink').value;
+			if (trackUrl.indexOf('soundcloud') == -1) {
+				return;
+			}
+				$.get(
+					'http://api.soundcloud.com/resolve.json?url=' + trackUrl + '&client_id=' + Client_ID, 
+					function (result) {
+						console.log(result);
+						document.getElementById('sname').value = result.title;
+						document.getElementById('salbum').value = result.label_name;
+						document.getElementById('sartist').value = result.user.username;
+						document.getElementById('sgenre').value = result.genre;
+						document.getElementById('sid').value = result.id;
+						$(".videowrapper, .exhibitions-image, iframe").replaceWith('<iframe width="100%" height="100%" scrolling="no" frameborder="no" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/' + result.id +'&amp;color=ff6600&amp;auto_play=false&amp;show_artwork=true"></iframe>');
+				}
+
+);}</script>
 	</body>
 </html>

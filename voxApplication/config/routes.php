@@ -10,6 +10,7 @@ $cnf['*']['namespace'] = 'Controllers';
 
 $cnf['*']['controllers']['songs']['to'] = 'Song';
 $cnf['*']['controllers']['songs']['methods']['list'] = 'index';
+$cnf['*']['controllers']['songs']['methods']['upload'] = 'upload';
 
 return $cnf;
 

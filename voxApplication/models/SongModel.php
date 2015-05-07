@@ -5,7 +5,7 @@ namespace Models;
 class SongModel extends \Models\BaseModel {	
 	public function getAll() {
 		$query = <<<EOD
-SELECT s.id, s.name, artist, album, u.username, g.name AS 'genre', s.upvotes, GROUP_CONCAT(p.name SEPARATOR ',') AS 'playlists' FROM songs s
+SELECT s.id, s.name, artist, album, file_name, u.username, g.name AS 'genre', s.upvotes, GROUP_CONCAT(p.name SEPARATOR ',') AS 'playlists' FROM songs s
 LEFT OUTER JOIN users u
 ON s.user_id = u.id
 LEFT OUTER JOIN genres g

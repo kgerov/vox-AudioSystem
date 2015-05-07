@@ -7,6 +7,19 @@
 		</div>
 	</div>
 </div>
+<?php 
+	$trackUrl = 'https://soundcloud.com/majorlazer/major-lazer-dj-snake-lean-on-feat-mo';
+	$Client_ID = '8291464f6b2fb0824953670f99fe23eb';
+	$url = "http://api.soundcloud.com/resolve.json?url=" . $trackUrl . "&client_id=" . $Client_ID;
+	//$response = http_get($url, array(), $info);
+	//print_r($info);
+	$ch = curl_init();
+	curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+	curl_setopt($ch, CURLOPT_URL, $url);
+	$content = curl_exec($ch);
+	var_dump($content);
+	var_dump($a);
+?>
 <div class="container">
 	<div class="row">
 		<!-- Main col-->
@@ -33,7 +46,10 @@
 				<!--content col-->
 				<div class="col-md-8 col-lg-9">
 					<h2 class="post-heading"><a href="single-post.html"><?php echo ($value['name'] ? $value['name'] : 'No name'); ?></a></h2>
-					<a href="single-post.html"><img class="post-thumbnail" src="assets/img/post-image-1.png" alt="blog post"></a>
+					<img class="post-thumbnail" src="assets/img/post-image-1.png" alt="blog post">
+					<audio controls>
+						<source src="<?php readfile('../user_songs/kgerov/h.mp3') ?>" type="audio/mpeg">
+					</audio>
 					<p>Artist: <?php echo ($value['artist'] ? $value['artist'] : ' - '); ?> | 
 						Album: <?php echo ($value['album'] ? $value['album'] : ' - '); ?>| 
 						Genre: <?php echo ($value['genre'] ? $value['genre'] : ' - '); ?></p>
