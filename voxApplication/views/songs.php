@@ -17,17 +17,16 @@
 				<!--meta col-->
 				<aside class="col-md-4 col-lg-3">
 					<div class="post-author">
-						<img class="pull-left avatar" src="assets/img/user-2.png" alt="user"/>
+						<img class="pull-left avatar" src="/vox/voxApplication/public/assets/img/default-user.png" alt="user"/>
 						<strong>Uploaded by:</strong>
 						<p><?php echo ($value['user'] ? $value['user'] : 'anonymous'); ?></p>
 					</div>
 					<div class="post-meta">
 						<p>In Playlists:</p>
 						<ul class="tags">
-							<li><a href="#"><i class="icon-double-angle-right"> </i>Social Media</a></li>
-							<li><a href="#"><i class="icon-double-angle-right"> </i>Trending Tech</a></li>
-							<li><a href="#"><i class="icon-double-angle-right"> </i>Branding</a></li>
-							<li><a href="#"><i class="icon-double-angle-right"> </i>iOS Apps</a></li>
+							<?php foreach(explode(',', $value['playlists']) as $k=>$v): ?>
+							<li><a href=""><i class="icon-double-angle-right"> </i><?php echo $v;?></a></li>
+							<?php endforeach; ?>
 						</ul>
 					</div>
 				</aside>
@@ -51,13 +50,11 @@
 				<h4>Filter</h4>
 				<hr>
 				<ul class="list-unstyled">
-					<li><a href="#"><i class="icon icon-bookmark"></i> Playlists</a></li>
-					<li><a href="#"><i class="icon icon-bookmark"></i> Artist</a></li>
-					<li><a href="#"><i class="icon icon-bookmark"></i> Genre</a></li>
-					<li><a href="#"><i class="icon icon-bookmark"></i> Album</a></li>
+					<li><a href=""><i class="icon icon-chevron-right"></i> Playlists</a></li>
+					<li><a href=""><i class="icon icon-chevron-right"></i> Genres</a></li>
+					<li><a href=""><i class="icon icon-chevron-right"></i> Artists</a></li>
 				</ul>
 				<hr>
-				<p>Don't miss the chance to visit our headquarter from monday through friday from 9am to 5pm. Best regards from the whole Venture Team.</p>
 			</section><!--/well-->
 		</aside><!--/sidebar-->
 	</div><!--/.row-->
