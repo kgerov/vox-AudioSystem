@@ -3,7 +3,7 @@
 		<div class="col-sm-12">
 			<h2>Upload Song</h2>
 			<br class="spacer-lg">
-			<form action="" method="POST" enctype="multipart/form-data">
+			<form action="" method="POST">
 				<fieldset>
 					<div class="form-group">
 						<label for="loginEmail">SoundCloud Link</label>
@@ -29,7 +29,7 @@
 						<label for="loginPassword">Choose file</label>
 						<input type="file" name="song_file" accept="audio/*">
 					</div> -->
-					<input type="hidden" id="sid">
+					<input type="hidden" id="sid" name="songid">
 					<div class="form-group">
 						<button type="submit" class="btn btn-default">Upload</button>
 					</div>

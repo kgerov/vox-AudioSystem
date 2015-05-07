@@ -18,7 +18,12 @@ class Song extends \Controllers\BaseController {
 	}
 
 	public function upload() {
-		
+		$songname = $this->input->post("name");
+		$id = $this->input->post("songid");
+
+		if (isset($songname) && isset($id)) {
+			echo $id;
+		}
 
 		$this->view->appendToLayout('body', 'uploadsong');
 		$this->view->display('layouts.themesbase');

@@ -17,6 +17,14 @@
 			.myNav {
 				float: right;
 			}
+
+			.upload-btn {
+				text-align: center;
+			}
+
+			.upload-btn button {
+				width: 100%;
+			}
 		</style>
 	</head>
 
@@ -37,10 +45,10 @@
 				</div>
 				<div class="collapse navbar-collapse navbar-ex1-collapse myNav">
 					<ul class="nav navbar-nav">
-						<li class="active"><a href="index.html">Songs</a></li>
-						<li><a href="blog.html">Playlists</a></li>
-						<li><a href="about.html">Genres</a></li>
-						<li><a href="pricing.html">Profile</a></li>
+						<li class="active"><a href="/vox/voxApplication/public/index.php/songs">Songs</a></li>
+						<li><a href="/vox/voxApplication/public/index.php/songs">Playlists</a></li>
+						<li><a href="/vox/voxApplication/public/index.php/songs">Genres</a></li>
+						<li><a href="/vox/voxApplication/public/index.php/songs">Profile</a></li>
 						<li><a href="portfolio.html">Portfolio</a></li>
 						<li><a href="contact.html">Contact</a></li>
 						<li class="dropdown">
@@ -100,7 +108,7 @@
 						document.getElementById('sartist').value = result.user.username;
 						document.getElementById('sgenre').value = result.genre;
 						document.getElementById('sid').value = result.id;
-						$(".videowrapper, .exhibitions-image, iframe").replaceWith('<iframe width="100%" height="100%" scrolling="no" frameborder="no" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/' + result.id +'&amp;color=ff6600&amp;auto_play=false&amp;show_artwork=true"></iframe>');
+						//$(".videowrapper, .exhibitions-image, iframe").replaceWith('<iframe width="100%" height="100%" scrolling="no" frameborder="no" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/' + result.id +'&amp;color=ff6600&amp;auto_play=false&amp;show_artwork=true"></iframe>');
 				}
 
 );}</script>
