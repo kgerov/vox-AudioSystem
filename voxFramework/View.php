@@ -35,6 +35,10 @@ class View {
 		}
 	}
 
+	public function clearNotys() {
+		\Vox\App::getInstance()->getSession()->notyVal = '';
+	}
+
 	public function display($name, $__data = array(), $returnAsString = false) {
 		if (is_array($__data)) {
 			$this->__data = array_merge($this->__data, $__data);

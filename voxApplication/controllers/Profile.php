@@ -25,10 +25,11 @@ class Profile extends \Controllers\BaseController {
 			$responsePass = $userModel->changePass($this->app->getSession()->username, md5($pass2), md5($pass1));
 
 			if ($responsePass != 0) {
+				$this->app->getSession()->notyVal = '1Pass changed|';
 				header('Location: /vox/voxApplication/public/index.php/songs');
 				exit;
 			} else {
-				echo "<script>alert('Incorrect old pass')</script>";
+				$this->view->notyVal = '0Incorrect old password|';
 			}
 		}
 
@@ -42,3 +43,5 @@ class Profile extends \Controllers\BaseController {
 		$this->view->display('layouts.themesbase');
 	}
 }
+
+//echo "<script>var flag = true; document.onreadystatechange = function() {if(flag) {adsNoty(false, 'Old password is not correct'); flag = false;}}</script>";

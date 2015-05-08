@@ -33,6 +33,38 @@
 			footer {
 				margin-top: 10%;
 			}
+
+			.row-centered {
+			    text-align:center;
+			}
+
+			.col-centered {
+			    display:inline-block;
+			    float:none;
+			    /* reset the text-align */
+			    text-align:left;
+			    /* inline-block space fix */
+			    margin-right:-4px;
+			}
+
+			.notyMsg {
+				width: 100%;
+				padding: 4%;
+				color: white;
+				border-radius: 2%;
+				margin-top: 2.5%;
+				text-align: center;
+				font-size: 1.3em;
+				max-height: 
+			}
+
+			.notyGreen {
+				background-color: #2ECC71;
+			}
+
+			.notyRed {
+				background-color: #D91E18;
+			}
 		</style>
 	</head>
 
@@ -83,6 +115,31 @@
 			</div>
 		</section>
 
+		<section>
+			<div class="container">
+				<div class="row row-centered" style="text-align:center;">
+					<div class="col-lg-6 col-centered">
+
+					<?php
+						if ($this->notyVal) {
+							$arr = explode('|', $this->notyVal);
+							foreach($arr as $key => $value) {
+							if (!$value) {
+								break;
+							}
+							?><div class="notyMsg <?php echo (intval(substr($value, 0, 1)) == 1 ? 'notyGreen' : 'notyRed')?>">
+								<?php echo substr($value, 1); ?>
+							</div><?php
+							}
+
+							$this->clearNotys();
+						}
+					?>
+					</div>
+				</div>
+			</div>
+		</section>
+
 		<main><?=$this->getLayoutData('body');?></main>
 
 		<footer class="wrapper-sm bg-secondary">
@@ -94,12 +151,12 @@
 				</div>
 			</div>
 		</footer>
-		
-		<script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.0/jquery.min.js"></script>
+		<script src="/vox/voxApplication/public/assets/js/jquery-1.8.0.min.js"></script>
 		<script>window.jQuery || document.write('<script src="/vox/voxApplication/public/assets/js/jquery-1.8.0.min.js"><\/script>')</script>
 		<script type="text/javascript" src="/vox/voxApplication/public/assets/js/bootstrap.min.js"></script>
 		<script type="text/javascript" src="/vox/voxApplication/public/js/noty/packaged/jquery.noty.packaged.min.js"></script>
-
+		<script type="text/javascript" src="/vox/voxApplication/public/js/noty/themes/custom.js"></script>
+		<script type="text/javascript" src="/vox/voxApplication/public/js/customNoty.js"></script>
 		<script type="text/javascript">
 		var Client_ID = '8291464f6b2fb0824953670f99fe23eb';
 
@@ -120,6 +177,19 @@
 						//$(".videowrapper, .exhibitions-image, iframe").replaceWith('<iframe width="100%" height="100%" scrolling="no" frameborder="no" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/' + result.id +'&amp;color=ff6600&amp;auto_play=false&amp;show_artwork=true"></iframe>');
 				});
 		}
+
+		// var data = document.getElementById('notyVal').value;
+		// console.log(data.split('|'));
+		// if (data && (localStorage.getItem('notys') == null || localStorage.getItem('notys') < data.length)) {
+		// 	if(parseInt(data.charAt(0)) == 1)
+		// 	{
+		// 		adsNoty(true, data.substring(1));
+		// 	} else {
+		// 		adsNoty(false, data.substring(1));
+		// 	}
+
+		// 	localStorage.setItem('notys', data.length);
+		// }
 	</script>
 	</body>
 </html>

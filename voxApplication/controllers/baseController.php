@@ -7,5 +7,6 @@ class BaseController extends \Vox\DefaultController {
 		parent::__construct();
 		$this->view->isLoggedIn = $this->app->getSession()->isLoggedIn;
 		$this->view->username = $this->app->getSession()->username;
+		$this->view->notyVal = $this->app->getSession()->notyVal;
 	}
 }
