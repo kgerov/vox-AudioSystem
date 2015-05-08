@@ -77,6 +77,26 @@ class Song extends \Controllers\BaseController {
 	public function info() {
 		$songModel = new \Models\SongModel();
 		$songId = $this->input->get(0);
+		$songId = intval($songId);
+
+		if (isset($songId)) {
+			$this->view->song = $songModel->getById($songId);
+
+			if ($this->view->song) {
+				$this->view->comments = $songModel->getSongComments($songId);				
+			}
+		}
+
+		$id = $this->input->post("action");
+		if (isset($id) && $this->app->getSession()->userId) {
+			$response = $songModel->likeSong(intval($this->app->getSession()->userId), intval($id));
+
+			if ($response != 0) {
+				$this->view->song = $songModel->getById($songId);
+			}
+		}
+
+		$this->view->appendToLayout('body', 'songinfo');
 		$this->view->display('layouts.themesbase');
 	}
 }

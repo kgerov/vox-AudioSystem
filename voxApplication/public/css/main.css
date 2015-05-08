@@ -99,3 +99,11 @@ footer {
 	border-right: 2px solid black;
 	padding-right: 0;
 }
+
+#comment-section {
+	margin-top: 11%;
+}
+
+.media-object {
+	max-height: 40px;
+}
