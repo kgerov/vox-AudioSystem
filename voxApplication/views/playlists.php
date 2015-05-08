@@ -42,6 +42,13 @@
 				</div>
 			</article>
 			<?php endforeach; ?>
+			<div class="col-md-12" style="text-align:center;">
+				<ul class="pagination">
+					<?php for($i = 1; $i<=$this->pages; $i++): ?>
+						<li class="<?php echo ($this->currPage == $i ? 'active' : ''); ?>"><a href="/vox/voxApplication/public/index.php/playlists/list/<?php echo $i;?>"><?php echo $i;?></a></li>
+					<?php endfor; ?>
+				</ul>
+			</div>
 		</div><!--end main col-->
 
 		<!--sidebar-->

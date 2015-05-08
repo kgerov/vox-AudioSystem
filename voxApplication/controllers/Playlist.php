@@ -5,7 +5,17 @@ namespace Controllers;
 class Playlist extends \Controllers\BaseController {
 	public function index() {
 		$playModel = new \Models\PlaylistModel();
-		$playlists = $playModel->getAll();
+
+		$pages = intval($playModel->getPlaylistCount()[0]['pages']);
+		$this->view->pages = ($pages%5 == 0 ? $pages/5 : $pages/5+1);
+
+		if (intval($this->input->get(0)) >= 1) {
+			$this->view->currPage = intval($this->input->get(0));
+		} else {
+			$this->view->currPage = 1;
+		}
+
+		$playlists = $playModel->getWithPage((intval($this->view->currPage)-1)*5);
 
 		$id = $this->input->post("actionplay"); 
 		if (isset($id) && $this->app->getSession()->userId) {

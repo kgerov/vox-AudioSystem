@@ -6,7 +6,7 @@ class Song extends \Controllers\BaseController {
 	public function index() {
 		$songModel = new \Models\SongModel();
 		$pages = intval($songModel->getSongCount()[0]['pages']);
-		$this->view->pages = ($pages/3 + $pages%3);
+		$this->view->pages = ($pages%3 == 0 ? $pages/3 : $pages/3+1);
 
 		if (intval($this->input->get(0)) >= 1) {
 			$this->view->currPage = intval($this->input->get(0));
