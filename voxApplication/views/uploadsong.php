@@ -1,6 +1,6 @@
 <?php 
 	if (!$this->username) {
-		header('Location: /vox/voxApplication/public/index.php/playlists');
+		header('Location: /vox/voxApplication/public/index.php/songs');
 	}
 ?>
 

@@ -5,7 +5,16 @@ namespace Controllers;
 class Song extends \Controllers\BaseController {
 	public function index() {
 		$songModel = new \Models\SongModel();
-		$songs = $songModel->getAll();
+		$pages = intval($songModel->getSongCount()[0]['pages']);
+		$this->view->pages = ($pages/3 + $pages%3);
+
+		if (intval($this->input->get(0)) >= 1) {
+			$this->view->currPage = intval($this->input->get(0));
+		} else {
+			$this->view->currPage = 1;
+		}
+
+		$songs = $songModel->getWithPage((intval($this->view->currPage)-1)*3);
 
 		$id = $this->input->post("action");
 		if (isset($id) && $this->app->getSession()->userId) {
