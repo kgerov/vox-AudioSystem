@@ -14,7 +14,11 @@
 			<script src="/vox/voxApplication/public/assets/js/respond.min.js"></script>
 		<![endif]-->
 		<style type="text/css">
-		
+			.playlist-songs {
+				list-style-type: none;
+				padding: 0;
+				margin-bottom: 3%;
+			}
 			.like-form {
 				display: inline-block;
 			}
@@ -87,6 +91,10 @@
 				text-align: center;
 				margin-bottom: 5%;
 			}
+
+			.checkbox {
+				height: 40px;
+			}
 		</style>
 	</head>
 
@@ -105,21 +113,21 @@
 						Vox
 					</a>
 				</div>
+				<?php $url = explode('/',$_SERVER['PHP_SELF']); ?>
 				<div class="collapse navbar-collapse navbar-ex1-collapse myNav">
 					<ul class="nav navbar-nav">
-						<li class="active"><a href="/vox/voxApplication/public/index.php/songs">Songs</a></li>
-						<li><a href="/vox/voxApplication/public/index.php/playlists">Playlists</a></li>
-						<li><a href="/vox/voxApplication/public/index.php/genres">Genres</a></li>
-						<li><a href="/vox/voxApplication/public/index.php/trending">Trending</a></li>
+						<li class="<?php echo (in_array('songs', $url) ? 'active' : ''); ?>"><a href="/vox/voxApplication/public/index.php/songs">Songs</a></li>
+						<li class="<?php echo (in_array('playlists', $url) ? 'active' : ''); ?>"><a href="/vox/voxApplication/public/index.php/playlists">Playlists</a></li>
+						<li class="<?php echo (in_array('genres', $url) ? 'active' : ''); ?>"><a href="/vox/voxApplication/public/index.php/genres">Genres</a></li>
+						<li class="<?php echo (in_array('trending', $url) ? 'active' : ''); ?>"><a href="/vox/voxApplication/public/index.php/trending">Trending</a></li>
 						<?php if ($this->username): ?>
-						<li><a href="/vox/voxApplication/public/index.php/songs/mysongs">My Songs</a></li>
-						<li><a href="/vox/voxApplication/public/index.php/songs/mysongs">My Playlists</a></li>
+						<li class="<?php echo (in_array('pr', $url) ? 'active' : ''); ?>"><a href="/vox/voxApplication/public/index.php/songs/mysongs">My Songs</a></li>
+						<li class="<?php echo (in_array('pr', $url) ? 'active' : ''); ?>"><a href="/vox/voxApplication/public/index.php/songs/mysongs">My Playlists</a></li>
 						<?php endif; ?>
 					</ul>
 				</div><!-- /.navbar-collapse -->
 			</div>
 		</nav>
-
 		<section class="wrapper-sm bg-primary">
 			<div class="container">
 				<div class="row">

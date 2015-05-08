@@ -26,15 +26,15 @@
 				<!--content col-->
 				<div class="col-md-8 col-lg-9">
 					<h2 class="post-heading"><a href="single-post.html"><?php echo ($value['name'] ? $value['name'] : 'No name'); ?></a></h2>
-					<ul>
+					<ul class="playlist-songs">
 						<?php foreach(explode(',', $value['songs']) as $k=>$v): ?>
-							<li><a href=""><i class="icon-double-angle-right"> </i><?php echo $v;?></a></li>
+							<li><a href=""><i class="icon-music"> </i><?php echo $v;?></a></li>
 						<?php endforeach; ?>
 					</ul>
 					<span id="<?php echo $value['id']; ?>" class="upvotes"><?php echo ($value['upvotes'] ? $value['upvotes'] : '0'); ?></span>
 					<? if ($this->username): ?>
 						<form method="post" class="like-form">
-							<input type="hidden" name="action" value="<?php echo $value['id']; ?>">
+							<input type="hidden" name="actionplay" value="<?php echo $value['id']; ?>">
 							<input type="submit" class="btn btn-success like-button" value="Like it!">
 						</form>
 					<? endif; ?>
@@ -56,11 +56,13 @@
 				</ul>
 				<hr>
 			</section><!--/well-->
+			<? if ($this->username): ?>
 			<section class="widget upload-btn">
 				<hr>
-					<a href="/vox/voxApplication/public/index.php/songs/upload"><button class="btn btn-danger">CREATE PLAYLIST</button></a>
+					<a href="/vox/voxApplication/public/index.php/playlists/create"><button class="btn btn-danger">CREATE PLAYLIST</button></a>
 				<hr>
 			</section><!--/well-->
+			<? endif; ?>
 		</aside><!--/sidebar-->
 	</div><!--/.row-->
 </div><!--/.container-->

@@ -1,3 +1,8 @@
+<?php 
+	if (!$this->username) {
+		header('Location: /vox/voxApplication/public/index.php/playlists');
+	}
+?>
 <div class="container">
 	<div class="row">
 		<div class="col-sm-6">

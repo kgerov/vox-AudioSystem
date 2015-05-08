@@ -60,6 +60,17 @@ EOD;
 
 	}
 
+	public function getSongNames() {
+		$query = <<<EOD
+SELECT id, name 
+FROM songs
+ORDER BY id DESC
+EOD;
+
+
+		return self::$db->prepare($query)->execute()->fetchAllAssoc();
+	}
+
 	public function getTrending() {
 		$query = <<<EOD
 SELECT * FROM (
@@ -88,14 +99,3 @@ EOD;
 		return self::$db->prepare($query)->execute()->fetchAllAssoc();
 	}
 }
-
-// SELECT s.id, s.name, artist, album, sc_id, u.username, g.name AS 'genre', GROUP_CONCAT(p.name SEPARATOR ',') AS 'playlists' FROM songs s
-// LEFT OUTER JOIN users u
-// ON s.user_id = u.id
-// LEFT OUTER JOIN genres g
-// ON s.genre_id = g.id
-// LEFT OUTER JOIN songplaylists sp
-// ON s.id = sp.song_id
-// LEFT OUTER JOIN playlists p
-// ON sp.playlist_id = p.id
-// GROUP BY s.name

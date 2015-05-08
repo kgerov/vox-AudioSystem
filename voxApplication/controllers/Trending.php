@@ -12,12 +12,27 @@ class Trending extends \Controllers\BaseController {
 			$response = $songModel->likeSong(intval($this->app->getSession()->userId), intval($id));
 
 			if ($response != 0) {
-				$songs = $songModel->getAll();
+				$songs = $songModel->getTrending();
 				$this->view->songs = $songs;
 			}
 		}
 
 		$this->view->songs = $songs;
+
+		$playModel = new \Models\PlaylistModel();
+		$playlists = $playModel->getAll();
+
+		$id = $this->input->post("actionplay"); 
+		if (isset($id) && $this->app->getSession()->userId) {
+			$response = $playModel->likePlaylist(intval($this->app->getSession()->userId), intval($id));
+
+			if ($response != 0) {
+				$playlists = $playModel->getTrending();
+				$this->view->playlists = $playlists;
+			}
+		}
+
+		$this->view->playlists = $playlists;
 
 		$this->view->appendToLayout('body', 'songs');
 		$this->view->appendToLayout('body2', 'playlists');

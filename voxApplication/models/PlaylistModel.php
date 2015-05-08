@@ -9,7 +9,7 @@ SELECT * FROM (
     SELECT playlists.id, playlists.name, users.username, COUNT(playlist_likes.playlist_id) as 'upvotes'
 FROM playlists
 LEFT OUTER JOIN users
-ON users.id = playlists.id
+ON users.id = playlists.user_id
 LEFT OUTER JOIN playlist_likes
 ON playlist_likes.playlist_id = playlists.id
 GROUP BY playlists.id) AS t1
@@ -28,34 +28,22 @@ EOD;
 		return self::$db->prepare($query)->execute()->fetchAllAssoc();
 	}
 
-	public function create($name, $artist, $album, $genre_id, $user_id, $sc_id) {
+	public function create($name, $userId) {
 		$query = <<<EOD
-INSERT INTO songs
-(name, artist, album, genre_id, user_id, sc_id)
-VALUES(?,?,?,?,?,?)
-EOD;
-		return self::$db->prepare($query)->execute(array($name, $artist, $album, $genre_id, $user_id, $sc_id))->getAffectedRows();
-	}
-
-	public function likeSong($userId, $songId) {
-		$query = <<<EOD
-INSERT INTO song_likes
-(user_id, song_id)
+INSERT INTO playlists
+(name, user_id)
 VALUES(?,?)
 EOD;
-		return self::$db->prepare($query)->execute(array($userId, $songId))->getAffectedRows();
+		return self::$db->prepare($query)->execute(array($name, $userId))->getLastInsertId();
 	}
 
-	public function delete($id) {
-
-	}
-
-	public function getById($id) {
-
-	}
-
-	public function edit($name, $artist, $album, $genre_id, $user_id) {
-
+	public function likePlaylist($userId, $playlistId) {
+		$query = <<<EOD
+INSERT INTO playlist_likes
+(user_id, playlist_id)
+VALUES(?,?)
+EOD;
+		return self::$db->prepare($query)->execute(array($userId, $playlistId))->getAffectedRows();
 	}
 
 	public function getTrending() {
@@ -84,5 +72,34 @@ EOD;
 
 
 		return self::$db->prepare($query)->execute()->fetchAllAssoc();
+	}
+
+	public function addSongsToPlaylist($playId, $songsIds) {
+		$query = "INSERT INTO songplaylists (playlist_id,song_id) VALUES ";
+		$arr = array();
+
+		for ($i = 0; $i < count($songsIds); $i++) {
+			if ($i != 0) {
+				$query .= ",";
+			}
+
+			$query .= "(".$playId.",".$songsIds[$i].")";
+			$arr[] = $playId;
+			$arr[] = $songsIds[$i];
+		}
+
+		return self::$db->prepare($query)->execute(array($userId, $playlistId))->getAffectedRows();
+	}
+
+	public function delete($id) {
+
+	}
+
+	public function getById($id) {
+
+	}
+
+	public function edit($name, $artist, $album, $genre_id, $user_id) {
+
 	}
 }
