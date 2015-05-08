@@ -116,15 +116,59 @@ EOD;
 		return self::$db->prepare($query)->execute(array($userId, $playlistId))->getAffectedRows();
 	}
 
-	public function delete($id) {
+	public function getSongComments($id) {
+        $query = <<<EOD
+SELECT playlist_comments.content, users.username
+FROM playlists
+LEFT OUTER JOIN playlist_comments
+ON playlist_comments.playlist_id = playlists.id
+LEFT OUTER JOIN users
+ON playlist_comments.user_id = users.id
+WHERE playlists.id = 2
+EOD;
 
-	}
+        return self::$db->prepare($query)->execute(array($id))->fetchAllAssoc();
+    }
 
 	public function getById($id) {
+        $query = <<<EOD
+SELECT * FROM (
+    SELECT playlists.id, playlists.name, users.username, COUNT(playlist_likes.playlist_id) as 'upvotes'
+FROM playlists
+LEFT OUTER JOIN users
+ON users.id = playlists.user_id
+LEFT OUTER JOIN playlist_likes
+ON playlist_likes.playlist_id = playlists.id
+GROUP BY playlists.id) AS t1
+JOIN (
+    SELECT playlists.id, GROUP_CONCAT(songs.name SEPARATOR ',') AS 'songs'
+	FROM playlists
+	LEFT OUTER JOIN songplaylists
+	ON songplaylists.playlist_id = playlists.id
+	LEFT OUTER JOIN songs
+	ON songs.id = songplaylists.song_id
+	GROUP BY playlists.id) AS t2
+ON t1.id = t2.id
+WHERE t1.id = ?
+EOD;
+
+        return self::$db->prepare($query)->execute(array($id))->fetchAllAssoc();
+    }
+
+    public function publishComment($playlistId, $userId, $content) {
+        $query = <<<EOD
+INSERT INTO playlist_comments
+(user_id, playlist_id, content)
+VALUES(?,?,?)
+EOD;
+        return self::$db->prepare($query)->execute(array($userId, $playlistId, $content))->getAffectedRows();
+    }
+
+	public function edit($name, $artist, $album, $genre_id, $user_id) {
 
 	}
 
-	public function edit($name, $artist, $album, $genre_id, $user_id) {
+	public function delete($id) {
 
 	}
 }
