@@ -116,14 +116,6 @@ EOD;
 		return self::$db->prepare($query)->execute(array($userId, $songId))->getAffectedRows();
 	}
 
-	public function delete($id) {
-
-	}
-
-	public function edit($name, $artist, $album, $genre_id, $user_id) {
-
-	}
-
 	public function getSongNames() {
 		$query = <<<EOD
 SELECT id, name 
@@ -162,4 +154,21 @@ EOD;
 
 		return self::$db->prepare($query)->execute()->fetchAllAssoc();
 	}
+
+    public function publishComment($songId, $userId, $content) {
+        $query = <<<EOD
+INSERT INTO song_comments
+(user_id, song_id, content)
+VALUES(?,?,?)
+EOD;
+        return self::$db->prepare($query)->execute(array($userId, $songId, $content))->getAffectedRows();
+    }
+
+    public function delete($id) {
+
+    }
+
+    public function edit($name, $artist, $album, $genre_id, $user_id) {
+
+    }
 }

@@ -96,6 +96,19 @@ class Song extends \Controllers\BaseController {
 			}
 		}
 
+		$comment = $this->input->post("comment");
+
+		if (isset($comment) && $this->app->getSession()->userId) {
+			$response = $songModel->publishComment($songId, intval($this->app->getSession()->userId), $comment);
+
+			if ($response != 0) {
+				$this->view->notyVal = '1Comment Published|';
+				$this->view->comments = $songModel->getSongComments($songId);
+			} else {
+				$this->view->notyVal = '0Error submiting comment|';
+			}
+		}
+
 		$this->view->appendToLayout('body', 'songinfo');
 		$this->view->display('layouts.themesbase');
 	}
