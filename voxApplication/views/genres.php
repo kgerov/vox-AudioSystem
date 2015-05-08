@@ -15,26 +15,40 @@
 			<!--first post-->
 			<?php foreach($this->genres as $key=>$value): ?>
 			<article class="row post-container">
-				<div class="col-md-8 col-lg-9">
-					<h2 class="post-heading"><a href="single-post.html"><?php echo ($value['name'] ? $value['name'] : 'No name'); ?></a></h2>
-					<ul class="playlist-songs">
-						<?php foreach(explode(',', $value['songs']) as $k=>$v): ?>
-							<li><a href=""><i class="icon-music"> </i><?php echo $v;?></a></li>
-						<?php endforeach; ?>
-					</ul>
-					<? if ($this->username): ?>
-						<form method="post">
-							<input type="hidden" name="actionDelete" value="<?php echo $value['name']; ?>">
-							<input type="submit" class="btn btn-danger like-button" value="Delete">
-						</form>
-					<? endif; ?>
-					<? if ($this->username): ?>
-						<form method="post">
-							<input type="hidden" name="actionEdit" value="<?php echo $value['name']; ?>">
-							<input class="genre-inp" type="text" name="newName" required>
-							<input type="submit" class="btn btn-warning like-button" value="EDIT">
-						</form>
-					<? endif; ?>
+				<div class="col-md-12 col-lg-12">
+					<div class="container">
+						<div class="row">
+							<div class="col-md-6">
+							<h2 class="post-heading"><a href="single-post.html"><?php echo ($value['name'] ? $value['name'] : 'No name'); ?></a></h2>
+							<ul class="playlist-songs">
+								<?php foreach(explode(',', $value['songs']) as $k=>$v): ?>
+									<li><a href=""><i class="icon-music"> </i><?php echo $v;?></a></li>
+								<?php endforeach; ?>
+							</ul>
+							</div>
+							<div class="col-md-6">
+								<? if ($this->username): ?>
+									<div class="container">
+										<div class="row">
+											<div class="col-md-9 line">
+												<form method="post">
+													<input type="hidden" name="actionEdit" value="<?php echo $value['name']; ?>">
+													<input class="genre-edit" type="text" name="newName" required>
+													<input type="submit" class="btn btn-warning like-button" value="EDIT">
+												</form>
+											</div>
+											<div class="col-md-3">
+												<form method="post">
+													<input type="hidden" name="actionDelete" value="<?php echo $value['name']; ?>">
+													<input type="submit" class="btn btn-danger like-button" value="Delete">
+												</form>
+											</div>
+										</div>
+									</div>
+								<? endif; ?>
+							</div>
+						</div>
+					</div>
 				</div>
 			</article>
 			<?php endforeach; ?>

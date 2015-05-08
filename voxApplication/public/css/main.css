@@ -89,3 +89,13 @@ footer {
 	width: 100%;
 	margin-bottom: 6%;
 }
+
+.genre-edit {
+	height: 35px;
+	width: 70%;
+}
+
+.line {
+	border-right: 2px solid black;
+	padding-right: 0;
+}
