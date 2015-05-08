@@ -130,26 +130,31 @@ EOD;
         return self::$db->prepare($query)->execute(array($id))->fetchAllAssoc();
     }
 
+    public function getPlaylistSongs($id) {
+		$query = <<<EOD
+SELECT songs.name, songs.id
+FROM playlists
+LEFT OUTER JOIN songplaylists
+ON songplaylists.playlist_id = playlists.id
+LEFT OUTER JOIN songs
+ON songplaylists.song_id = songs.id
+WHERE playlists.id = ?
+EOD;
+
+        return self::$db->prepare($query)->execute(array($id))->fetchAllAssoc();
+    }
+
 	public function getById($id) {
         $query = <<<EOD
-SELECT * FROM (
-    SELECT playlists.id, playlists.name, users.username, COUNT(playlist_likes.playlist_id) as 'upvotes'
+SELECT playlists.id, playlists.name, users.username, COUNT(playlist_likes.playlist_id) as 'upvotes'
 FROM playlists
 LEFT OUTER JOIN users
 ON users.id = playlists.user_id
 LEFT OUTER JOIN playlist_likes
 ON playlist_likes.playlist_id = playlists.id
-GROUP BY playlists.id) AS t1
-JOIN (
-    SELECT playlists.id, GROUP_CONCAT(songs.name SEPARATOR ',') AS 'songs'
-	FROM playlists
-	LEFT OUTER JOIN songplaylists
-	ON songplaylists.playlist_id = playlists.id
-	LEFT OUTER JOIN songs
-	ON songs.id = songplaylists.song_id
-	GROUP BY playlists.id) AS t2
-ON t1.id = t2.id
-WHERE t1.id = ?
+WHERE playlists.id = ?
+GROUP BY playlists.id
+
 EOD;
 
         return self::$db->prepare($query)->execute(array($id))->fetchAllAssoc();

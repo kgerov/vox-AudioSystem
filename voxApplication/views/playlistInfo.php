@@ -27,8 +27,8 @@
 				<div class="col-md-8 col-lg-9">
 					<h2 class="post-heading"><a href="/vox/voxApplication/public/index.php/playlists/info/<?php echo $value['id'];?>"><?php echo ($value['name'] ? $value['name'] : 'No name'); ?></a></h2>
 					<ul class="playlist-songs">
-						<?php foreach(explode(',', $value['songs']) as $k=>$v): ?>
-							<li><a href=""><i class="icon-music"> </i><?php echo $v;?></a></li>
+						<?php foreach($this->songs as $k=>$v): ?>
+							<li><a href="/vox/voxApplication/public/index.php/songs/info/<?php echo $v['id'];?>"><i class="icon-music"> </i><?php echo $v['name'];?></a></li>
 						<?php endforeach; ?>
 					</ul>
 					<span id="<?php echo $value['id']; ?>" class="upvotes"><?php echo ($value['upvotes'] ? $value['upvotes'] : '0'); ?></span>

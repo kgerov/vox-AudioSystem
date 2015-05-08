@@ -82,7 +82,8 @@ class Playlist extends \Controllers\BaseController {
 			$this->view->playlist = $playlistModel->getById($playlistId);
 
 			if ($this->view->playlist) {
-				$this->view->comments = $playlistModel->getPlaylistComments($playlistId);				
+				$this->view->comments = $playlistModel->getPlaylistComments($playlistId);
+				$this->view->songs = $playlistModel->getPlaylistSongs($playlistId);
 			}
 		}
 
