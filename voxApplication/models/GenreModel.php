@@ -31,4 +31,21 @@ ORDER BY genres.id DESC
 EOD;
 		return self::$db->prepare($query)->execute(array($name))->fetchAllAssoc();
 	}
+
+	public function delete($name) {
+		$query = <<<EOD
+DELETE FROM genres
+WHERE name=?
+EOD;
+		return self::$db->prepare($query)->execute(array($name))->getAffectedRows();
+	}
+
+	public function edit($name, $newname) {
+		$query = <<<EOD
+UPDATE genres
+SET name=?
+WHERE name=?
+EOD;
+		return self::$db->prepare($query)->execute(array($newname, $name))->getAffectedRows();
+	}
 }

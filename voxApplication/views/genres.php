@@ -22,6 +22,19 @@
 							<li><a href=""><i class="icon-music"> </i><?php echo $v;?></a></li>
 						<?php endforeach; ?>
 					</ul>
+					<? if ($this->username): ?>
+						<form method="post">
+							<input type="hidden" name="actionDelete" value="<?php echo $value['name']; ?>">
+							<input type="submit" class="btn btn-danger like-button" value="Delete">
+						</form>
+					<? endif; ?>
+					<? if ($this->username): ?>
+						<form method="post">
+							<input type="hidden" name="actionEdit" value="<?php echo $value['name']; ?>">
+							<input class="genre-inp" type="text" name="newName" required>
+							<input type="submit" class="btn btn-warning like-button" value="EDIT">
+						</form>
+					<? endif; ?>
 				</div>
 			</article>
 			<?php endforeach; ?>

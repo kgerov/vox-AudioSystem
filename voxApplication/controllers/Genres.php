@@ -20,6 +20,31 @@ class Genres extends \Controllers\BaseController {
 			}
 		}
 
+		$nameDelete = $this->input->post("actionDelete"); 
+		if (isset($nameDelete) && $this->app->getSession()->userId) {
+			$response = $genreModel->delete($nameDelete);
+
+			if ($response != 0) {
+				$this->view->notyVal = '1Delete Successful|';
+				$genres = $genreModel->getAll();
+			} else {
+				$this->view->notyVal = '0Could not delete genre|';
+			}
+		}
+
+		$nameEdit = $this->input->post("actionEdit");
+		$newname = $this->input->post("newName");
+		if (isset($nameEdit) && $this->app->getSession()->userId) {
+			$response = $genreModel->edit($nameEdit, $newname);
+
+			if ($response != 0) {
+				$this->view->notyVal = '1Edit Successful|';
+				$genres = $genreModel->getAll();
+			} else {
+				$this->view->notyVal = '0Could not edit genre|';
+			}
+		}
+
 		$this->view->genres = $genres;
 
 		$this->view->appendToLayout('body', 'genres');
