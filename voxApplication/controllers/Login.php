@@ -41,6 +41,7 @@ class Login extends \Controllers\BaseController {
 				if ($response != 0) {
 					$this->app->getSession()->isLoggedIn = true;
 					$this->app->getSession()->username = $newUsername;
+					$this->app->getSession()->userId = $response;
 					$this->app->getSession()->notyVal = '1Successful registration|';
 					header('Location: /vox/voxApplication/public/index.php/songs');
 					exit;

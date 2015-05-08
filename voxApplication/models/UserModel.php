@@ -17,7 +17,7 @@ INSERT INTO users
 (username, pass, email)
 VALUES(?,?,?)
 EOD;
-		return self::$db->prepare($query)->execute(array($username, $pass, $email))->getAffectedRows();
+		return self::$db->prepare($query)->execute(array($username, $pass, $email))->getLastInsertId();
 	}
 
 	public function delete($id) {

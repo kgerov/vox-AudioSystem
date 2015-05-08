@@ -73,11 +73,13 @@
 				</ul>
 				<hr>
 			</section><!--/well-->
-			<section class="widget upload-btn">
-				<hr>
-					<a href="/vox/voxApplication/public/index.php/songs/upload"><button class="btn btn-danger">UPLOAD</button></a>
-				<hr>
-			</section><!--/well-->
+			<?php if ($this->username): ?>
+				<section class="widget upload-btn">
+					<hr>
+						<a href="/vox/voxApplication/public/index.php/songs/upload"><button class="btn btn-danger">UPLOAD</button></a>
+					<hr>
+				</section><!--/well-->
+			<?php endif; ?>
 		</aside><!--/sidebar-->
 	</div><!--/.row-->
 </div><!--/.container-->
