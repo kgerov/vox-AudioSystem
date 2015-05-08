@@ -14,6 +14,10 @@
 			<script src="/vox/voxApplication/public/assets/js/respond.min.js"></script>
 		<![endif]-->
 		<style type="text/css">
+		
+			.like-form {
+				display: inline-block;
+			}
 			.myNav {
 				float: right;
 			}
@@ -28,6 +32,10 @@
 
 			.btn-user {
 				margin-left: 2%;
+			}
+
+			.like-button {
+				margin-right: 2%;
 			}
 
 			footer {
@@ -66,6 +74,19 @@
 			.notyRed {
 				background-color: #D91E18;
 			}
+
+			.upvotes {
+				border-right: 3px solid black;
+				padding-right: 1.5%;
+				font-size: 1.3em;
+				margin-right: 2.5%;
+				vertical-align: middle;
+			}
+
+			.soundlinkinput {
+				text-align: center;
+				margin-bottom: 5%;
+			}
 		</style>
 	</head>
 
@@ -89,7 +110,7 @@
 						<li class="active"><a href="/vox/voxApplication/public/index.php/songs">Songs</a></li>
 						<li><a href="/vox/voxApplication/public/index.php/playlists">Playlists</a></li>
 						<li><a href="/vox/voxApplication/public/index.php/genres">Genres</a></li>
-						<li><a href="/vox/voxApplication/public/index.php/songs/mysongs">Trending</a></li>
+						<li><a href="/vox/voxApplication/public/index.php/trending">Trending</a></li>
 						<?php if ($this->username): ?>
 						<li><a href="/vox/voxApplication/public/index.php/songs/mysongs">My Songs</a></li>
 						<li><a href="/vox/voxApplication/public/index.php/songs/mysongs">My Playlists</a></li>
@@ -142,6 +163,7 @@
 		</section>
 
 		<main><?=$this->getLayoutData('body');?></main>
+		<main><?=$this->getLayoutData('body2');?></main>
 
 		<footer class="wrapper-sm bg-secondary">
 			<div class="container">

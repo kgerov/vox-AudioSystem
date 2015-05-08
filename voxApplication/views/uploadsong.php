@@ -5,13 +5,13 @@
 			<br class="spacer-lg">
 			<form action="" method="POST">
 				<fieldset>
-					<div class="form-group">
-						<label for="loginEmail">SoundCloud Link</label>
-						<input class="form-control" id="slink" type="text" name="link" placeholder="Email" oninput="autofill(this); return false;">
+					<div class="form-group has-error soundlinkinput">
+						<label class="control-label" for="loginEmail">SoundCloud Link</label>
+						<input class="form-control" id="slink" type="text" name="link" placeholder="Email" required oninput="autofill(this); return false;">
 					</div>
 					<div class="form-group">
 						<label for="loginEmail">Song Name</label>
-						<input class="form-control" id="sname" type="text" name="name" placeholder="Email">
+						<input class="form-control" id="sname" type="text" name="name" required placeholder="Email">
 					</div>
 					<div class="form-group">
 						<label for="loginPassword">Artist</label>
@@ -23,7 +23,7 @@
 					</div>
 					<div class="form-group">
 						<label for="loginPassword">Genre</label>
-						<input class="form-control" id="sgenre" type="text" name="album" placeholder="Album">
+						<input class="form-control" id="sgenre" type="text" name="genre" placeholder="Album">
 					</div>
 					<!-- <div class="form-group">
 						<label for="loginPassword">Choose file</label>

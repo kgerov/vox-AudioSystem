@@ -5,7 +5,7 @@ namespace Models;
 class UserModel extends \Models\BaseModel {	
 	public function login($username, $pass) {
 		$query = <<<EOD
-SELECT username FROM users
+SELECT id, username FROM users
 WHERE username=? AND pass=?
 EOD;
 		return self::$db->prepare($query)->execute(array($username, $pass))->fetchAllAssoc();
