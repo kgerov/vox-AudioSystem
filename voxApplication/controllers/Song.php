@@ -65,6 +65,12 @@ class Song extends \Controllers\BaseController {
 	}
 
 	public function listMySongs() {
+		$songModel = new \Models\SongModel();
+		$songs = $songModel->getUserSongs($this->app->getSession()->username);
+
+
+		$this->view->songs = $songs;
+		$this->view->appendToLayout('body', 'songs');
 		$this->view->display('layouts.themesbase');
 	}
 }

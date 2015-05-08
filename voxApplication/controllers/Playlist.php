@@ -20,7 +20,6 @@ class Playlist extends \Controllers\BaseController {
 		$this->view->playlists = $playlists;
 
 		$this->view->appendToLayout('body', 'playlists');
-
 		$this->view->display('layouts.themesbase');
 	}
 
@@ -66,6 +65,11 @@ class Playlist extends \Controllers\BaseController {
 	}
 
 	public function listMyPlaylists() {
+		$playModel = new \Models\PlaylistModel();
+		$playlists = $playModel->getUserPlaylists($this->app->getSession()->username);
+
+		$this->view->playlists = $playlists;
+		$this->view->appendToLayout('body', 'playlists');
 		$this->view->display('layouts.themesbase');
 	}
 }
