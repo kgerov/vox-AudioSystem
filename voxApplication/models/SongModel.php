@@ -30,6 +30,34 @@ EOD;
 		return self::$db->prepare($query)->execute()->fetchAllAssoc();
 	}
 
+    public function getAllByName($name) {
+        $query = <<<EOD
+SELECT * FROM (
+    SELECT s.id, s.name, artist, album, sc_id, u.username, g.name AS 'genre', GROUP_CONCAT(p.name SEPARATOR ',') AS 'playlists' FROM songs s
+    LEFT OUTER JOIN users u
+    ON s.user_id = u.id
+    LEFT OUTER JOIN genres g
+    ON s.genre_id = g.id
+    LEFT OUTER JOIN songplaylists sp
+    ON s.id = sp.song_id
+    LEFT OUTER JOIN playlists p
+    ON sp.playlist_id = p.id
+    GROUP BY s.name) AS t1
+JOIN (
+    SELECT s.id, COUNT(*) as 'upvotes'
+    FROM songs s
+    LEFT OUTER JOIN song_likes sl
+    ON sl.song_id = s.id
+    GROUP BY s.id) AS t2
+ON t1.id = t2.id
+WHERE LOWER(t1.name) LIKE '%
+EOD;
+    
+        $query .= $name . "%'";
+
+        return self::$db->prepare($query)->execute()->fetchAllAssoc();
+    }
+
     public function getWithPage($page) {
         $query = <<<EOD
 SELECT * FROM (

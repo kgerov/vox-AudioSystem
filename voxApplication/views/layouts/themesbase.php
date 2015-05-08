@@ -38,6 +38,7 @@
 						<li class="<?php echo (in_array('playlists', $url) && !strpos($_SERVER['PHP_SELF'], 'my') ? 'active' : ''); ?>"><a href="/vox/voxApplication/public/index.php/playlists">Playlists</a></li>
 						<li class="<?php echo (in_array('genres', $url) ? 'active' : ''); ?>"><a href="/vox/voxApplication/public/index.php/genres">Genres</a></li>
 						<li class="<?php echo (in_array('trending', $url) ? 'active' : ''); ?>"><a href="/vox/voxApplication/public/index.php/trending">Trending</a></li>
+						<li class="<?php echo (in_array('search', $url) ? 'active' : ''); ?>"><a href="/vox/voxApplication/public/index.php/search">Search</a></li>
 						<?php if ($this->username): ?>
 						<li class="<?php echo (strpos($_SERVER['PHP_SELF'], 'songs/my') ? 'active' : ''); ?>"><a href="/vox/voxApplication/public/index.php/songs/my">My Songs</a></li>
 						<li class="<?php echo (strpos($_SERVER['PHP_SELF'], 'playlists/my') ? 'active' : ''); ?>"><a href="/vox/voxApplication/public/index.php/playlists/my">My Playlists</a></li>

@@ -29,6 +29,7 @@ $cnf['*']['controllers']['genres']['methods']['create'] = 'create';
 $cnf['*']['controllers']['login']['to'] = 'Login';
 $cnf['*']['controllers']['logout']['to'] = 'Logout';
 $cnf['*']['controllers']['trending']['to'] = 'Trending';
+$cnf['*']['controllers']['search']['to'] = 'Search';
 
 $cnf['*']['controllers']['profile']['to'] = 'Profile';
 $cnf['*']['controllers']['profile']['methods']['view'] = 'index';
