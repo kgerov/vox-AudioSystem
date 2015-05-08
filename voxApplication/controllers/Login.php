@@ -14,10 +14,11 @@ class Login extends \Controllers\BaseController {
 			if ($response[0]['username']) {
 				$this->app->getSession()->isLoggedIn = true;
 				$this->app->getSession()->username = $response[0]['username'];
+				$this->app->getSession()->notyVal = '1Login successful|';
 				header('Location: /vox/voxApplication/public/index.php/songs');
 				exit;
 			} else {
-				echo "<script>alert('Invalid login')</script>";
+				$this->view->notyVal = '0Invalid login|';
 			}
 		}
 
@@ -29,17 +30,19 @@ class Login extends \Controllers\BaseController {
 
 		if (isset($newUsername) && isset($email) && isset($pass1) && isset($pass2)) {
 			if ($pass1 != $pass2) {
-				echo "<script>alert('Passwords do not match')</script>";
+				$this->view->notyVal = '0Passwords do not match|';
 			}
-
-			$response = $userModel->register($newUsername, $email, md5($pass1));
-			if ($response != 0) {
-				$this->app->getSession()->isLoggedIn = true;
-				$this->app->getSession()->username = $newUsername;
-				header('Location: /vox/voxApplication/public/index.php/songs');
-				exit;
-			} else {
-				echo "<script>alert('Invalid registration')</script>";
+			else {
+				$response = $userModel->register($newUsername, $email, md5($pass1));
+				if ($response != 0) {
+					$this->app->getSession()->isLoggedIn = true;
+					$this->app->getSession()->username = $newUsername;
+					$this->app->getSession()->notyVal = '1Successful registration|';
+					header('Location: /vox/voxApplication/public/index.php/songs');
+					exit;
+				} else {
+					$this->view->notyVal = '0Invalid registration|';
+				}
 			}
 		}
 

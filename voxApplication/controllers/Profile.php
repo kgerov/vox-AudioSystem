@@ -11,10 +11,11 @@ class Profile extends \Controllers\BaseController {
 		if (isset($email)) {
 			$response = $userModel->edit($this->app->getSession()->username, $email);
 			if ($response != 0) {
+				$this->app->getSession()->notyVal = '1Email updated|';
 				header('Location: /vox/voxApplication/public/index.php/songs');
 				exit;
 			} else {
-				echo "<script>alert('Update fail')</script>";
+				$this->view->notyVal = '0Update Failed|';
 			}
 		}
 
