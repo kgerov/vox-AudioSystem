@@ -79,3 +79,13 @@ footer {
 .checkbox {
 	height: 40px;
 }
+
+.create-genre {
+	width: 60%;
+	margin-top: 5%;
+}
+
+.genre-inp {
+	width: 100%;
+	margin-bottom: 6%;
+}

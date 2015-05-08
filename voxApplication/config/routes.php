@@ -19,6 +19,12 @@ $cnf['*']['controllers']['playlists']['methods']['list'] = 'index';
 $cnf['*']['controllers']['playlists']['methods']['create'] = 'create';
 $cnf['*']['controllers']['playlists']['methods']['my'] = 'listMyPlaylists';
 
+
+
+$cnf['*']['controllers']['genres']['to'] = 'Genres';
+$cnf['*']['controllers']['genres']['methods']['list'] = 'index';
+$cnf['*']['controllers']['genres']['methods']['create'] = 'create';
+
 $cnf['*']['controllers']['login']['to'] = 'Login';
 $cnf['*']['controllers']['logout']['to'] = 'Logout';
 $cnf['*']['controllers']['trending']['to'] = 'Trending';
