@@ -9,93 +9,11 @@
 		<link rel="stylesheet" href="/vox/voxApplication/public/assets/styles/css/bootstrap.min.css">
 		<link rel="stylesheet" href="/vox/voxApplication/public/assets/font-awesome/css/font-awesome.min.css">
 		<link rel="stylesheet" href="/vox/voxApplication/public/assets/styles/css/style.css">
+		<link rel="stylesheet" href="/vox/voxApplication/public/css/main.css">
 		<!--[if lt IE 9]>
 			<script src="/vox/voxApplication/public/assets/js/html5shiv.js"></script>
 			<script src="/vox/voxApplication/public/assets/js/respond.min.js"></script>
 		<![endif]-->
-		<style type="text/css">
-			.playlist-songs {
-				list-style-type: none;
-				padding: 0;
-				margin-bottom: 3%;
-			}
-			.like-form {
-				display: inline-block;
-			}
-			.myNav {
-				float: right;
-			}
-
-			.upload-btn {
-				text-align: center;
-			}
-
-			.upload-btn button {
-				width: 100%;
-			}
-
-			.btn-user {
-				margin-left: 2%;
-			}
-
-			.like-button {
-				margin-right: 2%;
-			}
-
-			footer {
-				margin-top: 10%;
-			}
-
-			.row-centered {
-			    text-align:center;
-			}
-
-			.col-centered {
-			    display:inline-block;
-			    float:none;
-			    /* reset the text-align */
-			    text-align:left;
-			    /* inline-block space fix */
-			    margin-right:-4px;
-			}
-
-			.notyMsg {
-				width: 100%;
-				padding: 4%;
-				color: white;
-				border-radius: 2%;
-				margin-top: 2.5%;
-				margin-bottom: 3.5%;
-				text-align: center;
-				font-size: 1.3em;
-				max-height: 
-			}
-
-			.notyGreen {
-				background-color: #2ECC71;
-			}
-
-			.notyRed {
-				background-color: #D91E18;
-			}
-
-			.upvotes {
-				border-right: 3px solid black;
-				padding-right: 1.5%;
-				font-size: 1.3em;
-				margin-right: 2.5%;
-				vertical-align: middle;
-			}
-
-			.soundlinkinput {
-				text-align: center;
-				margin-bottom: 5%;
-			}
-
-			.checkbox {
-				height: 40px;
-			}
-		</style>
 	</head>
 
 	<body>
@@ -116,13 +34,13 @@
 				<?php $url = explode('/',$_SERVER['PHP_SELF']); ?>
 				<div class="collapse navbar-collapse navbar-ex1-collapse myNav">
 					<ul class="nav navbar-nav">
-						<li class="<?php echo (in_array('songs', $url) ? 'active' : ''); ?>"><a href="/vox/voxApplication/public/index.php/songs">Songs</a></li>
-						<li class="<?php echo (in_array('playlists', $url) ? 'active' : ''); ?>"><a href="/vox/voxApplication/public/index.php/playlists">Playlists</a></li>
+						<li class="<?php echo (in_array('songs', $url) && !strpos($_SERVER['PHP_SELF'], 'my') ? 'active' : ''); ?>"><a href="/vox/voxApplication/public/index.php/songs">Songs</a></li>
+						<li class="<?php echo (in_array('playlists', $url) && !strpos($_SERVER['PHP_SELF'], 'my') ? 'active' : ''); ?>"><a href="/vox/voxApplication/public/index.php/playlists">Playlists</a></li>
 						<li class="<?php echo (in_array('genres', $url) ? 'active' : ''); ?>"><a href="/vox/voxApplication/public/index.php/genres">Genres</a></li>
 						<li class="<?php echo (in_array('trending', $url) ? 'active' : ''); ?>"><a href="/vox/voxApplication/public/index.php/trending">Trending</a></li>
 						<?php if ($this->username): ?>
-						<li class="<?php echo (in_array('pr', $url) ? 'active' : ''); ?>"><a href="/vox/voxApplication/public/index.php/songs/mysongs">My Songs</a></li>
-						<li class="<?php echo (in_array('pr', $url) ? 'active' : ''); ?>"><a href="/vox/voxApplication/public/index.php/songs/mysongs">My Playlists</a></li>
+						<li class="<?php echo (strpos($_SERVER['PHP_SELF'], 'songs/my') ? 'active' : ''); ?>"><a href="/vox/voxApplication/public/index.php/songs/my">My Songs</a></li>
+						<li class="<?php echo (strpos($_SERVER['PHP_SELF'], 'playlists/my') ? 'active' : ''); ?>"><a href="/vox/voxApplication/public/index.php/playlists/my">My Playlists</a></li>
 						<?php endif; ?>
 					</ul>
 				</div><!-- /.navbar-collapse -->
@@ -202,7 +120,6 @@
 						document.getElementById('sartist').value = result.user.username;
 						document.getElementById('sgenre').value = result.genre;
 						document.getElementById('sid').value = result.id;
-						//$(".videowrapper, .exhibitions-image, iframe").replaceWith('<iframe width="100%" height="100%" scrolling="no" frameborder="no" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/' + result.id +'&amp;color=ff6600&amp;auto_play=false&amp;show_artwork=true"></iframe>');
 				});
 		}
 	</script>

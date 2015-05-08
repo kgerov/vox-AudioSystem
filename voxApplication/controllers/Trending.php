@@ -20,7 +20,7 @@ class Trending extends \Controllers\BaseController {
 		$this->view->songs = $songs;
 
 		$playModel = new \Models\PlaylistModel();
-		$playlists = $playModel->getAll();
+		$playlists = $playModel->getTrending();
 
 		$id = $this->input->post("actionplay"); 
 		if (isset($id) && $this->app->getSession()->userId) {

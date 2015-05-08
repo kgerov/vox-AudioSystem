@@ -11,11 +11,13 @@ $cnf['*']['namespace'] = 'Controllers';
 $cnf['*']['controllers']['songs']['to'] = 'Song';
 $cnf['*']['controllers']['songs']['methods']['list'] = 'index';
 $cnf['*']['controllers']['songs']['methods']['upload'] = 'upload';
+$cnf['*']['controllers']['songs']['methods']['my'] = 'listMySongs';
 
 
 $cnf['*']['controllers']['playlists']['to'] = 'Playlist';
 $cnf['*']['controllers']['playlists']['methods']['list'] = 'index';
 $cnf['*']['controllers']['playlists']['methods']['create'] = 'create';
+$cnf['*']['controllers']['playlists']['methods']['my'] = 'listMyPlaylists';
 
 $cnf['*']['controllers']['login']['to'] = 'Login';
 $cnf['*']['controllers']['logout']['to'] = 'Logout';

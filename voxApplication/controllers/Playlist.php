@@ -64,4 +64,8 @@ class Playlist extends \Controllers\BaseController {
 		$this->view->appendToLayout('body', 'createplaylist');
 		$this->view->display('layouts.themesbase');
 	}
+
+	public function listMyPlaylists() {
+		$this->view->display('layouts.themesbase');
+	}
 }
