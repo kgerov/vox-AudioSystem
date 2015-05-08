@@ -13,6 +13,7 @@
 						<label for="loginPassword">Password</label>
 						<input class="form-control" name="pass" type="password" id="loginPassword" placeholder="Password">
 					</div>
+					<input type="hidden" name="token" value="<?php echo $this->token;?>">
 					<div class="form-group">
 						<button type="submit" class="btn btn-default">Log Me In</button>
 					</div>

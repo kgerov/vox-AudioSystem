@@ -5,13 +5,16 @@ namespace Controllers;
 class Login extends \Controllers\BaseController {
 	public function index() {
 		$userModel = new \Models\UserModel();
-		
+		$this->view->token = $this->app->getSession()->token;
+
 		$username = $this->input->post("username");
 		$pass = $this->input->post("pass");
+		$token = $this->input->post("token");
 
-		if (isset($username) && isset($pass)) {
+		if (isset($username) && isset($pass) && ($this->app->getSession()->token == $token)) {
 			$response = $userModel->login($username, md5($pass));
 			if ($response[0]['username']) {
+				$this->app->getSession()->token = '';
 				$this->app->getSession()->isLoggedIn = true;
 				$this->app->getSession()->username = $response[0]['username'];
 				$this->app->getSession()->userId = $response[0]['id'];
