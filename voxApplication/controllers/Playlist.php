@@ -72,4 +72,43 @@ class Playlist extends \Controllers\BaseController {
 		$this->view->appendToLayout('body', 'playlists');
 		$this->view->display('layouts.themesbase');
 	}
+
+	public function info() {
+		$playlistModel = new \Models\PlaylistModel();
+		$playlistId = $this->input->get(0);
+		$playlistId = intval($playlistId);
+
+		if (isset($playlistId)) {
+			$this->view->playlist = $playlistModel->getById($playlistId);
+
+			if ($this->view->playlist) {
+				$this->view->comments = $playlistModel->getPlaylistComments($playlistId);				
+			}
+		}
+
+		$id = $this->input->post("actionplay");
+		if (isset($id) && $this->app->getSession()->userId) {
+			$response = $playlistModel->likePlaylist(intval($this->app->getSession()->userId), intval($id));
+
+			if ($response != 0) {
+				$this->view->playlist = $playlistModel->getById($playlistId);
+			}
+		}
+
+		$comment = $this->input->post("comment");
+
+		if (isset($comment) && $this->app->getSession()->userId) {
+			$response = $playlistModel->publishComment($playlistId, intval($this->app->getSession()->userId), $comment);
+
+			if ($response != 0) {
+				$this->view->notyVal = '1Comment Published|';
+				$this->view->comments = $playlistModel->getPlaylistComments($playlistId);
+			} else {
+				$this->view->notyVal = '0Error submiting comment|';
+			}
+		}
+
+		$this->view->appendToLayout('body', 'playlistInfo');
+		$this->view->display('layouts.themesbase');
+	}
 }

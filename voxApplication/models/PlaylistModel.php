@@ -116,7 +116,7 @@ EOD;
 		return self::$db->prepare($query)->execute(array($userId, $playlistId))->getAffectedRows();
 	}
 
-	public function getSongComments($id) {
+	public function getPlaylistComments($id) {
         $query = <<<EOD
 SELECT playlist_comments.content, users.username
 FROM playlists
@@ -124,7 +124,7 @@ LEFT OUTER JOIN playlist_comments
 ON playlist_comments.playlist_id = playlists.id
 LEFT OUTER JOIN users
 ON playlist_comments.user_id = users.id
-WHERE playlists.id = 2
+WHERE playlists.id = ?
 EOD;
 
         return self::$db->prepare($query)->execute(array($id))->fetchAllAssoc();

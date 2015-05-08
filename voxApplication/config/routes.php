@@ -19,7 +19,7 @@ $cnf['*']['controllers']['playlists']['to'] = 'Playlist';
 $cnf['*']['controllers']['playlists']['methods']['list'] = 'index';
 $cnf['*']['controllers']['playlists']['methods']['create'] = 'create';
 $cnf['*']['controllers']['playlists']['methods']['my'] = 'listMyPlaylists';
-
+$cnf['*']['controllers']['playlists']['methods']['info'] = 'info';
 
 
 $cnf['*']['controllers']['genres']['to'] = 'Genres';
