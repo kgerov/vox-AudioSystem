@@ -7,7 +7,7 @@ class Song extends \Controllers\BaseController {
 		$songModel = new \Models\SongModel();
 		$songs = $songModel->getAll();
 
-		$id = $this->input->post("action"); 
+		$id = $this->input->post("action");
 		if (isset($id) && $this->app->getSession()->userId) {
 			$response = $songModel->likeSong(intval($this->app->getSession()->userId), intval($id));
 
@@ -71,6 +71,12 @@ class Song extends \Controllers\BaseController {
 
 		$this->view->songs = $songs;
 		$this->view->appendToLayout('body', 'songs');
+		$this->view->display('layouts.themesbase');
+	}
+
+	public function info() {
+		$songModel = new \Models\SongModel();
+		$songId = $this->input->get(0);
 		$this->view->display('layouts.themesbase');
 	}
 }

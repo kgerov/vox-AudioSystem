@@ -33,7 +33,7 @@
 				</aside>
 				<!--content col-->
 				<div class="col-md-8 col-lg-9">
-					<h2 class="post-heading"><a href="single-post.html"><?php echo ($value['name'] ? $value['name'] : 'No name'); ?></a></h2>
+					<h2 class="post-heading"><a href="/vox/voxApplication/public/index.php/songs/info/23"><?php echo ($value['name'] ? $value['name'] : 'No name'); ?></a></h2>
 					<?php 
 						echo '<iframe width="100%" height="166" scrolling="no" frameborder="no" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/' . $value['sc_id'] . '&amp;color=ff5500&amp;auto_play=false&amp;hide_related=false&amp;show_comments=true&amp;show_user=true&amp;show_reposts=false"></iframe>';
 					?>
@@ -47,7 +47,7 @@
 								<input type="submit" class="btn btn-success like-button" value="Like it!">
 							</form>
 						<? endif; ?>
-						<a class="btn btn-primary" href="single-post.html">Comments &raquo;</a>
+						<a class="btn btn-primary" href="/vox/voxApplication/public/index.php/songs/info/23">Comments &raquo;</a>
 				</div>
 			</article>
 			<?php endforeach; ?>

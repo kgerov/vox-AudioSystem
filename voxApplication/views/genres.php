@@ -59,7 +59,7 @@
 				<hr>
 					<form method="post">
 						<input class="genre-inp" type="text" name="name" required>
-						<input class="btn btn-danger create-genre" type="submit" value="CREATE GENRE">
+						<input class="btn btn-info create-genre" type="submit" value="CREATE GENRE">
 					</form>
 				<hr>
 			</section><!--/well-->
