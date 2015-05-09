@@ -65,16 +65,35 @@
 									<img class="media-object" src="/assets/img/default-user.png">
 								</a>
 								<div class="media-body">
-									<h4 class="media-heading"><a href=""><?php echo $value['username']; ?></a></h4>
-									<p><?php echo $value['content']; ?></p>
-								</div>
-								<div>
-									<? if ($this->isAdmin == '1'): ?>
-										<form method="post" class="like-form">
-											<input type="hidden" name="deleteCommentAction" value="<?php echo $value['cid']; ?>">
-											<input type="submit" class="btn btn-danger like-button" value="Delete">
-										</form>
-									<? endif; ?>
+									<div class="container">
+										<div class="row">
+											<div class="col-md-5">
+												<h4 class="media-heading"><a href=""><?php echo $value['username']; ?></a></h4>
+												<p><?php echo $value['content']; ?></p>
+											</div>
+											<div class="col-md-7">
+												<? if ($this->isAdmin == '1'): ?>
+													<div class="container">
+														<div class="row">
+															<div class="col-md-10 line">
+																<form method="post">
+																	<input type="hidden" name="editCommentAction" value="<?php echo $value['cid']; ?>">
+																	<input class="genre-edit" type="text" name="editedComment" required>
+																	<input type="submit" class="btn btn-warning like-button" value="EDIT">
+																</form>
+															</div>
+															<div class="col-md-2">
+																<form method="post">
+																	<input type="hidden" name="deleteCommentAction" value="<?php echo $value['cid']; ?>">
+																	<input type="submit" class="btn btn-danger like-button" value="Delete">
+																</form>
+															</div>
+														</div>
+													</div>
+												<? endif; ?>
+											</div>
+										</div>
+									</div>
 								</div>
 							</li>
 						<?php endforeach; ?>

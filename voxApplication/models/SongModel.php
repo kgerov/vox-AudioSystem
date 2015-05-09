@@ -227,6 +227,15 @@ EOD;
         return self::$db->prepare($query)->execute(array($id))->getAffectedRows();
     }
 
+    public function editComment($id, $content) {
+        $query = <<<EOD
+UPDATE song_comments
+SET content=?
+WHERE id=?
+EOD;
+        return self::$db->prepare($query)->execute(array($content, $id))->getAffectedRows();
+    }
+
     public function getSongCount() {
         $query = <<<EOD
 SELECT COUNT(*) AS 'pages'

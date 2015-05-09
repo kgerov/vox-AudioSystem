@@ -129,6 +129,19 @@ class Song extends \Controllers\BaseController {
 			}
 		}
 
+		$editCommentId = $this->input->post("editCommentAction");
+		$editedComment = $this->input->post("editedComment");
+		if (isset($editCommentId) && ($this->app->getSession()->isAdmin == '1')) {
+			$response = $songModel->editComment(intval($editCommentId), $editedComment);
+
+			if ($response != 0) {
+				$this->view->notyVal = '1Comment Edited|';
+				$this->view->comments = $songModel->getSongComments($songId);
+			} else {
+				$this->view->notyVal = '0Error editing comment|';
+			}
+		}
+
 		$comment = $this->input->post("comment");
 
 		if (isset($comment) && $this->app->getSession()->userId) {
