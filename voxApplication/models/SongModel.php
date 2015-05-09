@@ -198,6 +198,14 @@ EOD;
 		return self::$db->prepare($query)->execute(array($userId, $songId))->getAffectedRows();
 	}
 
+    public function dislikeSong($userId, $songId) {
+        $query = <<<EOD
+DELETE FROM song_likes
+WHERE user_id=? AND song_id=?
+EOD;
+        return self::$db->prepare($query)->execute(array($userId, $songId))->getAffectedRows();
+    }
+
 	public function getSongNames() {
 		$query = <<<EOD
 SELECT id, name 

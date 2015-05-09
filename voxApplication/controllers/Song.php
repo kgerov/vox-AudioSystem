@@ -22,13 +22,18 @@ class Song extends \Controllers\BaseController {
 		$songs = $songModel->getWithPage((intval($this->view->currPage)-1)*3, $userIdLike);
 
 		$id = $this->input->post("action");
+		$hasLiked = $this->input->post("hasLiked");
 		if (isset($id) && $this->app->getSession()->userId) {
-			$response = $songModel->likeSong(intval($this->app->getSession()->userId), intval($id));
+			if ($hasLiked) {
+				$response = $songModel->dislikeSong(intval($this->app->getSession()->userId), intval($id));
+			} else {
+				$response = $songModel->likeSong(intval($this->app->getSession()->userId), intval($id));
+			}
 
 			if ($response != 0) {
-				$songs = $songModel->getWithPage((intval($this->view->currPage)-1)*3, $userIdLike);
-				$this->view->songs = $songs;
-			}
+					$songs = $songModel->getWithPage((intval($this->view->currPage)-1)*3, $userIdLike);
+					$this->view->songs = $songs;
+				}
 		}
 
 		$this->view->songs = $songs;

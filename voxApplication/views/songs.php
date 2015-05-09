@@ -42,10 +42,19 @@
 						Genre: <?php echo ($value['genre'] ? $value['genre'] : ' - '); ?></p>
 						<span id="<?php echo $value['id']; ?>" class="upvotes"><?php echo ($value['upvotes'] ? $value['upvotes'] : '0'); ?></span>
 						<? if ($this->username): ?>
-							<form method="post" class="like-form">
-								<input type="hidden" name="action" value="<?php echo $value['id']; ?>">
-								<input type="submit" class="btn btn-success like-button" value="Like it!" <?php echo ($value['hasLiked']) ? 'disabled' : '' ?>>
-							</form>
+							<? if (!$value['hasLiked']): ?>
+								<form method="post" class="like-form">
+									<input type="hidden" name="action" value="<?php echo $value['id']; ?>">
+									<input type="hidden" name="hasLiked" value="<?php echo $value['hasLiked']; ?>">
+									<input type="submit" class="btn btn-success like-button" value="Like it!">
+								</form>
+							<? else: ?>
+								<form method="post" class="like-form">
+									<input type="hidden" name="action" value="<?php echo $value['id']; ?>">
+									<input type="hidden" name="hasLiked" value="<?php echo $value['hasLiked']; ?>">
+									<input type="submit" class="btn btn-warning like-button" value="Dislike">
+								</form>
+							<? endif; ?>
 						<? endif; ?>
 						<a class="btn btn-primary" href="/index.php/songs/info/<?php echo $value['id'];?>">Comments &raquo;</a>
 				</div>
