@@ -18,7 +18,7 @@
 	</head>
 
 	<body>
-		<nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+		<nav class="navbar navbar-default navbar-fixed-top <?php if($this->isAdmin == '1') echo 'navbar-custom'; ?>" role="navigation">
 			<div class="container">
 				<div class="navbar-header">
 					<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
@@ -48,6 +48,7 @@
 				</div><!-- /.navbar-collapse -->
 			</div>
 		</nav>
+		<?php if ($this->isAdmin != '1'): ?>
 		<section class="wrapper-sm bg-primary">
 			<div class="container">
 				<div class="row">
@@ -64,8 +65,9 @@
 				</div>
 			</div>
 		</section>
+		<?php endif; ?>
 
-		<section>
+		<section id="msgBox">
 			<div class="container">
 				<div class="row row-centered" style="text-align:center;">
 					<div class="col-lg-6 col-centered">
@@ -93,7 +95,26 @@
 		<main><?=$this->getLayoutData('body');?></main>
 		<main><?=$this->getLayoutData('body2');?></main>
 
-		<footer class="wrapper-sm bg-secondary">
+		<?php if ($this->isAdmin == '1'): ?>
+		<section class="wrapper-sm bg-primary custom-greet">
+			<div class="container">
+				<div class="row">
+					<div class="col-lg-11">
+						<i class="icon icon-user"></i> Hello, <?php echo ($this->username ? $this->username : 'Guest.'); 
+						if(!$this->username) { echo '<a class="btn btn-login btn-user" href="/index.php/login">Login here &raquo;</a>';}
+						else {echo '<a class="btn btn-login btn-user" href="/index.php/profile">Profile &raquo;</a>';} ?>
+					</div>
+					<div class="col-lg-1">
+						<?php 
+						if($this->username) echo '<a class="btn btn-warning" href="/index.php/logout">Logout &raquo;</a>';
+						?>
+					</div>
+				</div>
+			</div>
+		</section>
+		<?php endif; ?>
+
+		<footer class="wrapper-sm bg-secondary <?php if($this->isAdmin == '1') echo 'admin-footer'; ?>">
 			<div class="container">
 				<div class="row">
 					<div class="col-lg-12">
@@ -124,6 +145,8 @@
 						document.getElementById('sid').value = result.id;
 				});
 		}
+
+		$('#msgBox').delay(3000).fadeOut('slow');
 	</script>
 	</body>
 </html>

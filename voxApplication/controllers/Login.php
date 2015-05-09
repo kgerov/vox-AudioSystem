@@ -18,6 +18,7 @@ class Login extends \Controllers\BaseController {
 				$this->app->getSession()->isLoggedIn = true;
 				$this->app->getSession()->username = $response[0]['username'];
 				$this->app->getSession()->userId = $response[0]['id'];
+				$this->app->getSession()->isAdmin = $response[0]['isAdmin'];
 				$this->app->getSession()->notyVal = '1Login successful|';
 				header('Location: /index.php/songs');
 				exit;
