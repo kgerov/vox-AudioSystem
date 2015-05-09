@@ -13,11 +13,11 @@
 				<fieldset>
 					<div class="form-group has-error soundlinkinput">
 						<label class="control-label" for="loginEmail">SoundCloud Link</label>
-						<input class="form-control" id="slink" type="text" name="link" placeholder="Email" required oninput="autofill(this); return false;">
+						<input class="form-control" id="slink" type="text" name="link" placeholder="SOUNDCLOUD" required oninput="autofill(this); return false;">
 					</div>
 					<div class="form-group">
 						<label for="loginEmail">Song Name</label>
-						<input class="form-control" id="sname" type="text" name="name" required placeholder="Email">
+						<input class="form-control" id="sname" type="text" name="name" required placeholder="Song name">
 					</div>
 					<div class="form-group">
 						<label for="loginPassword">Artist</label>
@@ -29,7 +29,7 @@
 					</div>
 					<div class="form-group">
 						<label for="loginPassword">Genre</label>
-						<input class="form-control" id="sgenre" type="text" name="genre" placeholder="Album">
+						<input class="form-control" id="sgenre" type="text" name="genre" placeholder="Genre">
 					</div>
 					<!-- <div class="form-group">
 						<label for="loginPassword">Choose file</label>

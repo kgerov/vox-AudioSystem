@@ -7,6 +7,11 @@ class Song extends \Controllers\BaseController {
 		$songModel = new \Models\SongModel();
 		$pages = intval($songModel->getSongCount()[0]['pages']);
 		$this->view->pages = ($pages%3 == 0 ? $pages/3 : $pages/3+1);
+		if ($this->app->getSession()->userId) {
+			$userIdLike = $this->app->getSession()->userId;
+		} else {
+			$userIdLike = -1;
+		}
 
 		if (intval($this->input->get(0)) >= 1) {
 			$this->view->currPage = intval($this->input->get(0));
@@ -14,14 +19,14 @@ class Song extends \Controllers\BaseController {
 			$this->view->currPage = 1;
 		}
 
-		$songs = $songModel->getWithPage((intval($this->view->currPage)-1)*3);
+		$songs = $songModel->getWithPage((intval($this->view->currPage)-1)*3, $userIdLike);
 
 		$id = $this->input->post("action");
 		if (isset($id) && $this->app->getSession()->userId) {
 			$response = $songModel->likeSong(intval($this->app->getSession()->userId), intval($id));
 
 			if ($response != 0) {
-				$songs = $songModel->getWithPage((intval($this->view->currPage)-1)*3);
+				$songs = $songModel->getWithPage((intval($this->view->currPage)-1)*3, $userIdLike);
 				$this->view->songs = $songs;
 			}
 		}

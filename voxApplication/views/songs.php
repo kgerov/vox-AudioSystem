@@ -44,7 +44,7 @@
 						<? if ($this->username): ?>
 							<form method="post" class="like-form">
 								<input type="hidden" name="action" value="<?php echo $value['id']; ?>">
-								<input type="submit" class="btn btn-success like-button" value="Like it!">
+								<input type="submit" class="btn btn-success like-button" value="Like it!" <?php echo ($value['hasLiked']) ? 'disabled' : '' ?>>
 							</form>
 						<? endif; ?>
 						<a class="btn btn-primary" href="/index.php/songs/info/<?php echo $value['id'];?>">Comments &raquo;</a>
