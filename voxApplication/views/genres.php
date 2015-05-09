@@ -26,8 +26,8 @@
 								<?php endforeach; ?>
 							</ul>
 							</div>
-							<div class="col-md-6">
-								<? if ($this->username): ?>
+							<? if ($this->isAdmin == '1'): ?>
+								<div class="col-md-6">
 									<div class="container">
 										<div class="row">
 											<div class="col-md-9 line">
@@ -45,8 +45,8 @@
 											</div>
 										</div>
 									</div>
-								<? endif; ?>
-							</div>
+								</div>
+							<? endif; ?>
 						</div>
 					</div>
 				</div>
