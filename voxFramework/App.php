@@ -138,7 +138,8 @@ class App {
      public function displayError($error) {
         try {
             $view = \Vox\View::getInstance();
-            $view->display('errors.' . $error);
+            $view->appendToLayout('body', 'errors.' . $error);
+            $view->display('layouts.themesbase');
         } catch (\Exception $exc) {
             \Vox\Common::headerStatus($error);
             echo '<h1>' . $error . '</h1>';

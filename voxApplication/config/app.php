@@ -2,7 +2,7 @@
 
 $cnf['default_controller'] = 'Index';
 $cnf['default_method'] = 'index';
-$cnf['displayExceptions'] = true;
+$cnf['displayExceptions'] = false;
 $cnf['documentRoot'] = '';
 $cnf['namespaces']['Controllers'] = '/Applications/XAMPP/htdocs/vox/voxApplication/controllers/';
 $cnf['namespaces']['Models'] = '/Applications/XAMPP/htdocs/vox/voxApplication/models/';

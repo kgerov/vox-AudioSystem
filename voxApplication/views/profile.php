@@ -1,6 +1,6 @@
 <?php 
 	if (!$this->username) {
-		header('Location: /index.php/playlists');
+		header('Location: /index.php/songs');
 	}
 ?>
 <div class="container">
