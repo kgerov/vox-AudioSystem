@@ -71,13 +71,13 @@ SELECT * FROM (
     LEFT OUTER JOIN playlists p
     ON sp.playlist_id = p.id
     GROUP BY s.name) AS t1
-JOIN (
-    SELECT s.id, COUNT(*) as 'upvotes'
+LEFT OUTER JOIN (
+    SELECT s.id AS 'secId', COUNT(*) as 'upvotes'
     FROM songs s
-    LEFT OUTER JOIN song_likes sl
+    JOIN song_likes sl
     ON sl.song_id = s.id
     GROUP BY s.id) AS t2
-ON t1.id = t2.id
+ON t1.id = t2.secId
 ORDER BY t1.id DESC
 LIMIT
 EOD;
