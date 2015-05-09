@@ -117,6 +117,18 @@ class Song extends \Controllers\BaseController {
 			}
 		}
 
+		$deleteCommentId = $this->input->post("deleteCommentAction");
+		if (isset($deleteCommentId) && ($this->app->getSession()->isAdmin == '1')) {
+			$response = $songModel->deleteComment(intval($deleteCommentId));
+
+			if ($response != 0) {
+				$this->view->notyVal = '1Comment Deleted|';
+				$this->view->comments = $songModel->getSongComments($songId);
+			} else {
+				$this->view->notyVal = '0Error deleting comment|';
+			}
+		}
+
 		$comment = $this->input->post("comment");
 
 		if (isset($comment) && $this->app->getSession()->userId) {

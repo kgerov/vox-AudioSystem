@@ -141,7 +141,7 @@ EOD;
 
     public function getSongComments($id) {
         $query = <<<EOD
-SELECT song_comments.content, users.username
+SELECT song_comments.id AS 'cid', song_comments.content, users.username
 FROM songs
 LEFT OUTER JOIN song_comments
 ON song_comments.song_id = songs.id
@@ -217,6 +217,14 @@ INSERT INTO song_comments
 VALUES(?,?,?)
 EOD;
         return self::$db->prepare($query)->execute(array($userId, $songId, $content))->getAffectedRows();
+    }
+
+    public function deleteComment($id) {
+        $query = <<<EOD
+DELETE FROM song_comments
+WHERE id=?
+EOD;
+        return self::$db->prepare($query)->execute(array($id))->getAffectedRows();
     }
 
     public function getSongCount() {

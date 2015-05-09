@@ -68,6 +68,14 @@
 									<h4 class="media-heading"><a href=""><?php echo $value['username']; ?></a></h4>
 									<p><?php echo $value['content']; ?></p>
 								</div>
+								<div>
+									<? if ($this->isAdmin == '1'): ?>
+										<form method="post" class="like-form">
+											<input type="hidden" name="deleteCommentAction" value="<?php echo $value['cid']; ?>">
+											<input type="submit" class="btn btn-danger like-button" value="Delete">
+										</form>
+									<? endif; ?>
+								</div>
 							</li>
 						<?php endforeach; ?>
 					</ul>
