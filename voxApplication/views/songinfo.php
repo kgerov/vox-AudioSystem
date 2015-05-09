@@ -47,6 +47,12 @@
 								<input type="submit" class="btn btn-success like-button" value="Like it!">
 							</form>
 						<? endif; ?>
+						<? if ($this->isAdmin == '1'): ?>
+							<form method="post" class="like-form">
+								<input type="hidden" name="deleteAction" value="<?php echo $value['id']; ?>">
+								<input type="submit" class="btn btn-danger like-button" value="Delete">
+							</form>
+						<? endif; ?>
 
 					<!-- comments -->
 					<h2 id="comment-section">Latest comments:</h2>

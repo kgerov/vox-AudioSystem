@@ -228,7 +228,11 @@ EOD;
     }
 
     public function delete($id) {
-
+        $query = <<<EOD
+DELETE FROM songs
+WHERE id=?
+EOD;
+        return self::$db->prepare($query)->execute(array($id))->getAffectedRows();
     }
 
     public function edit($name, $artist, $album, $genre_id, $user_id) {

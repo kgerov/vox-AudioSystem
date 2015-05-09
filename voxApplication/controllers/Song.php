@@ -105,6 +105,18 @@ class Song extends \Controllers\BaseController {
 			}
 		}
 
+		$deleteId = $this->input->post("deleteAction");
+		if (isset($deleteId) && ($this->app->getSession()->isAdmin == '1')) {
+			$response = $songModel->delete(intval($deleteId));
+
+			if ($response != 0) {
+				$this->app->getSession()->notyVal = '1Song Deleted|';
+				header('Location: /index.php/songs');
+			} else {
+				$this->view->notyVal = '0Error deleting song|';
+			}
+		}
+
 		$comment = $this->input->post("comment");
 
 		if (isset($comment) && $this->app->getSession()->userId) {
