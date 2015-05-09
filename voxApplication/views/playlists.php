@@ -18,14 +18,14 @@
 				<!--meta col-->
 				<aside class="col-md-4 col-lg-3">
 					<div class="post-author">
-						<img class="pull-left avatar" src="/vox/voxApplication/public/assets/img/default-user.png" alt="user"/>
+						<img class="pull-left avatar" src="/assets/img/default-user.png" alt="user"/>
 						<strong>Uploaded by:</strong>
 						<p><?php echo ($value['username'] ? $value['username'] : 'anonymous'); ?></p>
 					</div>
 				</aside>
 				<!--content col-->
 				<div class="col-md-8 col-lg-9">
-					<h2 class="post-heading"><a href="/vox/voxApplication/public/index.php/playlists/info/<?php echo $value['id'];?>"><?php echo ($value['name'] ? $value['name'] : 'No name'); ?></a></h2>
+					<h2 class="post-heading"><a href="/index.php/playlists/info/<?php echo $value['id'];?>"><?php echo ($value['name'] ? $value['name'] : 'No name'); ?></a></h2>
 					<ul class="playlist-songs">
 						<?php foreach(explode(',', $value['songs']) as $k=>$v): ?>
 							<li><a href=""><i class="icon-music"> </i><?php echo $v;?></a></li>
@@ -38,14 +38,14 @@
 							<input type="submit" class="btn btn-success like-button" value="Like it!">
 						</form>
 					<? endif; ?>
-					<a class="btn btn-primary" href="/vox/voxApplication/public/index.php/playlists/info/<?php echo $value['id'];?>">Comments &raquo;</a>
+					<a class="btn btn-primary" href="/index.php/playlists/info/<?php echo $value['id'];?>">Comments &raquo;</a>
 				</div>
 			</article>
 			<?php endforeach; ?>
 			<div class="col-md-12" style="text-align:center;">
 				<ul class="pagination">
 					<?php for($i = 1; $i<=$this->pages; $i++): ?>
-						<li class="<?php echo ($this->currPage == $i ? 'active' : ''); ?>"><a href="/vox/voxApplication/public/index.php/playlists/list/<?php echo $i;?>"><?php echo $i;?></a></li>
+						<li class="<?php echo ($this->currPage == $i ? 'active' : ''); ?>"><a href="/index.php/playlists/list/<?php echo $i;?>"><?php echo $i;?></a></li>
 					<?php endfor; ?>
 				</ul>
 			</div>
@@ -66,7 +66,7 @@
 			<? if ($this->username): ?>
 			<section class="widget upload-btn">
 				<hr>
-					<a href="/vox/voxApplication/public/index.php/playlists/create"><button class="btn btn-danger">CREATE PLAYLIST</button></a>
+					<a href="/index.php/playlists/create"><button class="btn btn-danger">CREATE PLAYLIST</button></a>
 				<hr>
 			</section><!--/well-->
 			<? endif; ?>

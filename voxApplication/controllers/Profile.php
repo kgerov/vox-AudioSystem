@@ -12,7 +12,7 @@ class Profile extends \Controllers\BaseController {
 			$response = $userModel->edit($this->app->getSession()->username, $email);
 			if ($response != 0) {
 				$this->app->getSession()->notyVal = '1Email updated|';
-				header('Location: /vox/voxApplication/public/index.php/songs');
+				header('Location: /index.php/songs');
 				exit;
 			} else {
 				$this->view->notyVal = '0Update Failed|';
@@ -27,7 +27,7 @@ class Profile extends \Controllers\BaseController {
 
 			if ($responsePass != 0) {
 				$this->app->getSession()->notyVal = '1Pass changed|';
-				header('Location: /vox/voxApplication/public/index.php/songs');
+				header('Location: /index.php/songs');
 				exit;
 			} else {
 				$this->view->notyVal = '0Incorrect old password|';

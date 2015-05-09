@@ -25,11 +25,15 @@ class DefaultController {
      */
     public $input;
 
+    public $documentRoot;
+
     public function __construct() {
         $this->app = \Vox\App::getInstance();
         $this->view = \Vox\View::getInstance();
         $this->config = $this->app->getConfig();
         $this->input = \Vox\InputData::getInstance();
+        $documentRoot = $this->app->getConfig()->app['documentRoot'];
+        $this->view->dr = $documentRoot;
     }
     
     public function jsonResponse(){

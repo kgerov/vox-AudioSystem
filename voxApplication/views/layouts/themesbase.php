@@ -6,13 +6,13 @@
 		<title>Vox</title>
 		<meta name="description" content="">
 		<meta name="viewport" content="width=device-width">
-		<link rel="stylesheet" href="/vox/voxApplication/public/assets/styles/css/bootstrap.min.css">
-		<link rel="stylesheet" href="/vox/voxApplication/public/assets/font-awesome/css/font-awesome.min.css">
-		<link rel="stylesheet" href="/vox/voxApplication/public/assets/styles/css/style.css">
-		<link rel="stylesheet" href="/vox/voxApplication/public/css/main.css">
+		<link rel="stylesheet" href="/assets/styles/css/bootstrap.min.css">
+		<link rel="stylesheet" href="/assets/font-awesome/css/font-awesome.min.css">
+		<link rel="stylesheet" href="/assets/styles/css/style.css">
+		<link rel="stylesheet" href="/css/main.css">
 		<!--[if lt IE 9]>
-			<script src="/vox/voxApplication/public/assets/js/html5shiv.js"></script>
-			<script src="/vox/voxApplication/public/assets/js/respond.min.js"></script>
+			<script src="/assets/js/html5shiv.js"></script>
+			<script src="/assets/js/respond.min.js"></script>
 		<![endif]-->
 	</head>
 
@@ -26,23 +26,23 @@
 						<span class="icon-bar"></span>
 						<span class="icon-bar"></span>
 					</button>
-					<a class="navbar-brand" href="/vox/voxApplication/public/index.php/songs">
-						<img src="/vox/voxApplication/public/assets/img/logo.png" alt="logo">
+					<a class="navbar-brand" href="/index.php/songs">
+						<img src="/assets/img/logo.png" alt="logo">
 						Vox
 					</a>
 				</div>
 				<?php $url = explode('/',$_SERVER['PHP_SELF']); ?>
 				<div class="collapse navbar-collapse navbar-ex1-collapse myNav">
 					<ul class="nav navbar-nav">
-						<li class="<?php echo (in_array('songs', $url) && !strpos($_SERVER['PHP_SELF'], 'my') ? 'active' : ''); ?>"><a href="/vox/voxApplication/public/index.php/songs">Songs</a></li>
-						<li class="<?php echo (in_array('playlists', $url) && !strpos($_SERVER['PHP_SELF'], 'my') ? 'active' : ''); ?>"><a href="/vox/voxApplication/public/index.php/playlists">Playlists</a></li>
-						<li class="<?php echo (in_array('genres', $url) ? 'active' : ''); ?>"><a href="/vox/voxApplication/public/index.php/genres">Genres</a></li>
-						<li class="<?php echo (in_array('trending', $url) ? 'active' : ''); ?>"><a href="/vox/voxApplication/public/index.php/trending">Trending</a></li>
+						<li class="<?php echo (in_array('songs', $url) && !strpos($_SERVER['PHP_SELF'], 'my') ? 'active' : ''); ?>"><a href="/index.php/songs">Songs</a></li>
+						<li class="<?php echo (in_array('playlists', $url) && !strpos($_SERVER['PHP_SELF'], 'my') ? 'active' : ''); ?>"><a href="/index.php/playlists">Playlists</a></li>
+						<li class="<?php echo (in_array('genres', $url) ? 'active' : ''); ?>"><a href="/index.php/genres">Genres</a></li>
+						<li class="<?php echo (in_array('trending', $url) ? 'active' : ''); ?>"><a href="/index.php/trending">Trending</a></li>
 						<?php if ($this->username): ?>
-						<li class="<?php echo (strpos($_SERVER['PHP_SELF'], 'songs/my') ? 'active' : ''); ?>"><a href="/vox/voxApplication/public/index.php/songs/my">My Songs</a></li>
-						<li class="<?php echo (strpos($_SERVER['PHP_SELF'], 'playlists/my') ? 'active' : ''); ?>"><a href="/vox/voxApplication/public/index.php/playlists/my">My Playlists</a></li>
+						<li class="<?php echo (strpos($_SERVER['PHP_SELF'], 'songs/my') ? 'active' : ''); ?>"><a href="/index.php/songs/my">My Songs</a></li>
+						<li class="<?php echo (strpos($_SERVER['PHP_SELF'], 'playlists/my') ? 'active' : ''); ?>"><a href="/index.php/playlists/my">My Playlists</a></li>
 						<?php endif; ?>
-						<li class="<?php echo (in_array('search', $url) ? 'active' : ''); ?>"><a href="/vox/voxApplication/public/index.php/search">Search</a></li>
+						<li class="<?php echo (in_array('search', $url) ? 'active' : ''); ?>"><a href="/index.php/search">Search</a></li>
 					</ul>
 				</div><!-- /.navbar-collapse -->
 			</div>
@@ -52,12 +52,12 @@
 				<div class="row">
 					<div class="col-lg-11">
 						<i class="icon icon-user"></i> Hello, <?php echo ($this->username ? $this->username : 'Guest.'); 
-						if(!$this->username) { echo '<a class="btn btn-login btn-user" href="/vox/voxApplication/public/index.php/login">Login here &raquo;</a>';}
-						else {echo '<a class="btn btn-login btn-user" href="/vox/voxApplication/public/index.php/profile">Profile &raquo;</a>';} ?>
+						if(!$this->username) { echo '<a class="btn btn-login btn-user" href="/index.php/login">Login here &raquo;</a>';}
+						else {echo '<a class="btn btn-login btn-user" href="/index.php/profile">Profile &raquo;</a>';} ?>
 					</div>
 					<div class="col-lg-1">
 						<?php 
-						if($this->username) echo '<a class="btn btn-warning" href="/vox/voxApplication/public/index.php/logout">Logout &raquo;</a>';
+						if($this->username) echo '<a class="btn btn-warning" href="/index.php/logout">Logout &raquo;</a>';
 						?>
 					</div>
 				</div>
@@ -101,9 +101,9 @@
 				</div>
 			</div>
 		</footer>
-		<script src="/vox/voxApplication/public/assets/js/jquery-1.8.0.min.js"></script>
-		<script>window.jQuery || document.write('<script src="/vox/voxApplication/public/assets/js/jquery-1.8.0.min.js"><\/script>')</script>
-		<script type="text/javascript" src="/vox/voxApplication/public/assets/js/bootstrap.min.js"></script>
+		<script src="/assets/js/jquery-1.8.0.min.js"></script>
+		<script>window.jQuery || document.write('<script src="/assets/js/jquery-1.8.0.min.js"><\/script>')</script>
+		<script type="text/javascript" src="/assets/js/bootstrap.min.js"></script>
 		<script type="text/javascript">
 		var Client_ID = '8291464f6b2fb0824953670f99fe23eb';
 

@@ -19,7 +19,7 @@
 					<div class="container">
 						<div class="row">
 							<div class="col-md-6">
-							<h2 class="post-heading"><a href="single-post.html"><?php echo ($value['name'] ? $value['name'] : 'No name'); ?></a></h2>
+							<h2 class="post-heading"><a href=""><?php echo ($value['name'] ? $value['name'] : 'No name'); ?></a></h2>
 							<ul class="playlist-songs">
 								<?php foreach(explode(',', $value['songs']) as $k=>$v): ?>
 									<li><a href=""><i class="icon-music"> </i><?php echo $v;?></a></li>

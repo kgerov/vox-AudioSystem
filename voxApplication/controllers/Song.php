@@ -63,7 +63,7 @@ class Song extends \Controllers\BaseController {
 
 			if ($response != 0) {
 				$this->app->getSession()->notyVal = '1Song Created|';
-				header('Location: /vox/voxApplication/public/index.php/songs');
+				header('Location: /index.php/songs');
 			} else {
 				$this->view->notyVal = '0Error uploading song|';
 			}

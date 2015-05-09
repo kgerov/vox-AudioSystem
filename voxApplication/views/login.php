@@ -47,8 +47,8 @@
 					</div>
 					<div class="form-group">
 						<strong>Or create an account with your social profiles:</strong><br/>
-						<a href="#" class="btn btn-facebook"><i class="icon icon-facebook"></i> Facebook</a> 
-						<a href="#" class="btn btn-twitter"><i class="icon icon-twitter"></i> Twitter</a>
+						<a href="" class="btn btn-facebook"><i class="icon icon-facebook"></i> Facebook</a> 
+						<a href="" class="btn btn-twitter"><i class="icon icon-twitter"></i> Twitter</a>
 					</div>
 				</fieldset>
 			</form>

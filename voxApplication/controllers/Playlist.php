@@ -48,7 +48,7 @@ class Playlist extends \Controllers\BaseController {
 			if ($newPlaylistId != 0) {
 				if (count($songs) == 0) {
 					$this->app->getSession()->notyVal = '1Playlist Created|';
-					header('Location: /vox/voxApplication/public/index.php/playlists');
+					header('Location: /index.php/playlists');
 				} else {
 					$songIds = array();
 
@@ -60,7 +60,7 @@ class Playlist extends \Controllers\BaseController {
 
 					if ($response != 0) {
 						$this->app->getSession()->notyVal = '1Playlist Created|';
-						header('Location: /vox/voxApplication/public/index.php/playlists');
+						header('Location: /index.php/playlists');
 					} else {
 						$this->view->notyVal = '0Error creating playlist|';
 					}

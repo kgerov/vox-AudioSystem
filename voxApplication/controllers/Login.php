@@ -19,7 +19,7 @@ class Login extends \Controllers\BaseController {
 				$this->app->getSession()->username = $response[0]['username'];
 				$this->app->getSession()->userId = $response[0]['id'];
 				$this->app->getSession()->notyVal = '1Login successful|';
-				header('Location: /vox/voxApplication/public/index.php/songs');
+				header('Location: /index.php/songs');
 				exit;
 			} else {
 				$this->view->notyVal = '0Invalid login|';
@@ -43,7 +43,7 @@ class Login extends \Controllers\BaseController {
 					$this->app->getSession()->username = $newUsername;
 					$this->app->getSession()->userId = $response;
 					$this->app->getSession()->notyVal = '1Successful registration|';
-					header('Location: /vox/voxApplication/public/index.php/songs');
+					header('Location: /index.php/songs');
 					exit;
 				} else {
 					$this->view->notyVal = '0Invalid registration|';

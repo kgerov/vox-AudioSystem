@@ -18,7 +18,7 @@
 				<!--meta col-->
 				<aside class="col-md-4 col-lg-3">
 					<div class="post-author">
-						<img class="pull-left avatar" src="/vox/voxApplication/public/assets/img/default-user.png" alt="user"/>
+						<img class="pull-left avatar" src="/assets/img/default-user.png" alt="user"/>
 						<strong>Uploaded by:</strong>
 						<p><?php echo ($value['username'] ? $value['username'] : 'anonymous'); ?></p>
 					</div>
@@ -33,7 +33,7 @@
 				</aside>
 				<!--content col-->
 				<div class="col-md-8 col-lg-9">
-					<h2 class="post-heading"><a href="/vox/voxApplication/public/index.php/songs/info/<?php echo $value['id'];?>"><?php echo ($value['name'] ? $value['name'] : 'No name'); ?></a></h2>
+					<h2 class="post-heading"><a href="/index.php/songs/info/<?php echo $value['id'];?>"><?php echo ($value['name'] ? $value['name'] : 'No name'); ?></a></h2>
 					<?php 
 						echo '<iframe width="100%" height="166" scrolling="no" frameborder="no" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/' . $value['sc_id'] . '&amp;color=ff5500&amp;auto_play=false&amp;hide_related=false&amp;show_comments=true&amp;show_user=true&amp;show_reposts=false"></iframe>';
 					?>
@@ -47,7 +47,7 @@
 								<input type="submit" class="btn btn-success like-button" value="Like it!">
 							</form>
 						<? endif; ?>
-						<a class="btn btn-primary" href="/vox/voxApplication/public/index.php/songs/info/<?php echo $value['id'];?>">Comments &raquo;</a>
+						<a class="btn btn-primary" href="/index.php/songs/info/<?php echo $value['id'];?>">Comments &raquo;</a>
 				</div>
 			</article>
 			<?php endforeach; ?>
@@ -55,7 +55,7 @@
 			<div class="col-md-12" style="text-align:center;">
 				<ul class="pagination">
 					<?php for($i = 1; $i<=$this->pages; $i++): ?>
-						<li class="<?php echo ($this->currPage == $i ? 'active' : ''); ?>"><a href="/vox/voxApplication/public/index.php/songs/list/<?php echo $i;?>"><?php echo $i;?></a></li>
+						<li class="<?php echo ($this->currPage == $i ? 'active' : ''); ?>"><a href="/index.php/songs/list/<?php echo $i;?>"><?php echo $i;?></a></li>
 					<?php endfor; ?>
 				</ul>
 			</div>
@@ -76,7 +76,7 @@
 			<?php if ($this->username): ?>
 				<section class="widget upload-btn">
 					<hr>
-						<a href="/vox/voxApplication/public/index.php/songs/upload"><button class="btn btn-danger">UPLOAD</button></a>
+						<a href="/index.php/songs/upload"><button class="btn btn-danger">UPLOAD</button></a>
 					<hr>
 				</section><!--/well-->
 			<?php endif; ?>
