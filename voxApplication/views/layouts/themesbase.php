@@ -10,6 +10,7 @@
 		<link rel="stylesheet" href="/assets/font-awesome/css/font-awesome.min.css">
 		<link rel="stylesheet" href="/assets/styles/css/style.css">
 		<link rel="stylesheet" href="/css/main.css">
+		<link rel="shortcut icon" href="/assets/img/code.png">
 		<!--[if lt IE 9]>
 			<script src="/assets/js/html5shiv.js"></script>
 			<script src="/assets/js/respond.min.js"></script>

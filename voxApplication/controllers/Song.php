@@ -21,7 +21,7 @@ class Song extends \Controllers\BaseController {
 			$response = $songModel->likeSong(intval($this->app->getSession()->userId), intval($id));
 
 			if ($response != 0) {
-				$songs = $songModel->getAll();
+				$songs = $songModel->getWithPage((intval($this->view->currPage)-1)*3);
 				$this->view->songs = $songs;
 			}
 		}
