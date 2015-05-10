@@ -6,7 +6,7 @@ class Login extends \Controllers\BaseController {
 	public function index() {
 		$userModel = new \Models\UserModel();
 		$this->view->token = $this->app->getSession()->token;
-
+		
 		// Login
 		$username = $this->input->post("username");
 		$pass = $this->input->post("pass");
