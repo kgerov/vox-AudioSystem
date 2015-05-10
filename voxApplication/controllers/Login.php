@@ -5,7 +5,7 @@ namespace Controllers;
 class Login extends \Controllers\BaseController {
 	public function index() {
 		$userModel = new \Models\UserModel();
-		$this->view->token = $this->app->getSession()->token;
+		$this->view->token = $this->app->getSession()->token; // Add token to session
 		
 		// Login
 		$username = $this->input->post("username");

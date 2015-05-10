@@ -135,7 +135,7 @@ class App {
         }
     }
 
-     public function displayError($error) {
+    public function displayError($error) {
         try {
             $view = \Vox\View::getInstance();
             $view->appendToLayout('body', 'errors.' . $error);
