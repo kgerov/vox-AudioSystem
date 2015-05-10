@@ -39,6 +39,6 @@ class Profile extends \Controllers\BaseController {
 		$this->view->username = $currUser[0]['username'];
 		$this->view->email = $currUser[0]['email'];
 		$this->view->appendToLayout('body', 'profile');
-		$this->view->display('layouts.themesbase');
+		$this->view->display('layouts.skeletonLayout');
 	}
 }

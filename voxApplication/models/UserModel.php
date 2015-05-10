@@ -20,14 +20,6 @@ EOD;
 		return self::$db->prepare($query)->execute(array($username, $pass, $email))->getLastInsertId();
 	}
 
-	public function delete($id) {
-
-	}
-
-	public function getById($id) {
-
-	}
-
 	public function getByUsername($username) {
 		$query = <<<EOD
 SELECT username, email FROM users
@@ -45,12 +37,20 @@ EOD;
 		return self::$db->prepare($query)->execute(array($email, $username))->getAffectedRows();
 	}
 
-		public function changePass($username, $passNew, $passOld) {
+	public function changePass($username, $passNew, $passOld) {
 		$query = <<<EOD
 UPDATE users
 SET pass=?
 WHERE username=? && pass=?
 EOD;
 		return self::$db->prepare($query)->execute(array($passNew, $username, $passOld))->getAffectedRows();
+	}
+
+	public function delete($id) {
+
+	}
+
+	public function getById($id) {
+
 	}
 }

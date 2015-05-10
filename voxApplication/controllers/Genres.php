@@ -49,6 +49,6 @@ class Genres extends \Controllers\BaseController {
 
 		$this->view->genres = $genres;
 		$this->view->appendToLayout('body', 'genres');
-		$this->view->display('layouts.themesbase');
+		$this->view->display('layouts.skeletonLayout');
 	}
 }

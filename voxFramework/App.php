@@ -139,7 +139,7 @@ class App {
         try {
             $view = \Vox\View::getInstance();
             $view->appendToLayout('body', 'errors.' . $error);
-            $view->display('layouts.themesbase');
+            $view->display('layouts.skeletonLayout');
         } catch (\Exception $exc) {
             \Vox\Common::headerStatus($error);
             echo '<h1>' . $error . '</h1>';

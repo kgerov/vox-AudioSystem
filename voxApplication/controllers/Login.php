@@ -57,6 +57,6 @@ class Login extends \Controllers\BaseController {
 
 
 		$this->view->appendToLayout('body', 'login');
-		$this->view->display('layouts.themesbase');
+		$this->view->display('layouts.skeletonLayout');
 	}
 }

@@ -5,22 +5,17 @@ namespace Controllers;
 class Song extends \Controllers\BaseController {
 	public function index() {
 		$songModel = new \Models\SongModel();
-		$pages = intval($songModel->getSongCount()[0]['pages']);
-		$this->view->pages = ($pages%3 == 0 ? $pages/3 : $pages/3+1);
+		$this->getPage($songModel);
+
 		if ($this->app->getSession()->userId) {
 			$userIdLike = $this->app->getSession()->userId;
 		} else {
 			$userIdLike = -1;
 		}
 
-		if (intval($this->input->get(0)) >= 1) {
-			$this->view->currPage = intval($this->input->get(0));
-		} else {
-			$this->view->currPage = 1;
-		}
-
 		$songs = $songModel->getWithPage((intval($this->view->currPage)-1)*3, $userIdLike);
 
+		// Like/Dislike song
 		$id = $this->input->post("action");
 		$hasLiked = $this->input->post("hasLiked");
 		if (isset($id) && $this->app->getSession()->userId) {
@@ -37,12 +32,14 @@ class Song extends \Controllers\BaseController {
 		}
 
 		$this->view->songs = $songs;
-		$this->view->appendToLayout('body', 'songs');
-		$this->view->display('layouts.themesbase');
+		$this->view->appendToLayout('body', 'songs.songs');
+		$this->view->display('layouts.skeletonLayout');
 	}
 
 	public function upload() {
 		$songModel = new \Models\SongModel();
+
+		// Upload song
 		$songname = $this->input->post("name");
 		$id = $this->input->post("songid");
 		$artist = $this->input->post("artist");
@@ -63,6 +60,7 @@ class Song extends \Controllers\BaseController {
 				$genre_id = $response[0]['id'];
 			} else {
 				$response = $genreModel->create($genre);
+
 				if ($response != 0) {
 					$response = $genreModel->getByName($genre);
 					$genre_id = $response[0]['id'];
@@ -79,8 +77,8 @@ class Song extends \Controllers\BaseController {
 			}
 		}
 
-		$this->view->appendToLayout('body', 'uploadsong');
-		$this->view->display('layouts.themesbase');
+		$this->view->appendToLayout('body', 'songs.uploadsong');
+		$this->view->display('layouts.skeletonLayout');
 	}
 
 	public function listMySongs() {
@@ -89,8 +87,8 @@ class Song extends \Controllers\BaseController {
 
 
 		$this->view->songs = $songs;
-		$this->view->appendToLayout('body', 'songs');
-		$this->view->display('layouts.themesbase');
+		$this->view->appendToLayout('body', 'songs.songs');
+		$this->view->display('layouts.skeletonLayout');
 	}
 
 	public function info() {
@@ -106,6 +104,7 @@ class Song extends \Controllers\BaseController {
 			}
 		}
 
+		// Like/Dislike song
 		$id = $this->input->post("action");
 		if (isset($id) && $this->app->getSession()->userId) {
 			$response = $songModel->likeSong(intval($this->app->getSession()->userId), intval($id));
@@ -115,6 +114,7 @@ class Song extends \Controllers\BaseController {
 			}
 		}
 
+		// Admin delete song
 		$deleteId = $this->input->post("deleteAction");
 		if (isset($deleteId) && ($this->app->getSession()->isAdmin == '1')) {
 			$response = $songModel->delete(intval($deleteId));
@@ -127,6 +127,7 @@ class Song extends \Controllers\BaseController {
 			}
 		}
 
+		// Admin delete comment
 		$deleteCommentId = $this->input->post("deleteCommentAction");
 		if (isset($deleteCommentId) && ($this->app->getSession()->isAdmin == '1')) {
 			$response = $songModel->deleteComment(intval($deleteCommentId));
@@ -139,6 +140,7 @@ class Song extends \Controllers\BaseController {
 			}
 		}
 
+		// Admin edit comment
 		$editCommentId = $this->input->post("editCommentAction");
 		$editedComment = $this->input->post("editedComment");
 		if (isset($editCommentId) && ($this->app->getSession()->isAdmin == '1')) {
@@ -152,8 +154,8 @@ class Song extends \Controllers\BaseController {
 			}
 		}
 
+		// User add new comment
 		$comment = $this->input->post("comment");
-
 		if (isset($comment) && $this->app->getSession()->userId) {
 			$response = $songModel->publishComment($songId, intval($this->app->getSession()->userId), $comment);
 
@@ -165,7 +167,18 @@ class Song extends \Controllers\BaseController {
 			}
 		}
 
-		$this->view->appendToLayout('body', 'songinfo');
-		$this->view->display('layouts.themesbase');
+		$this->view->appendToLayout('body', 'songs.songinfo');
+		$this->view->display('layouts.skeletonLayout');
+	}
+
+	private function getPage($songModel) {
+		$pages = intval($songModel->getSongCount()[0]['pages']);
+		$this->view->pages = ($pages%3 == 0 ? $pages/3 : $pages/3+1);
+
+		if (intval($this->input->get(0)) >= 1) {
+			$this->view->currPage = intval($this->input->get(0));
+		} else {
+			$this->view->currPage = 1;
+		}
 	}
 }

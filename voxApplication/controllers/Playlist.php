@@ -21,8 +21,8 @@ class Playlist extends \Controllers\BaseController {
 
 
 		$this->view->playlists = $playlists;
-		$this->view->appendToLayout('body', 'playlists');
-		$this->view->display('layouts.themesbase');
+		$this->view->appendToLayout('body', 'playlists.playlists');
+		$this->view->display('layouts.skeletonLayout');
 	}
 
 	public function create() {
@@ -60,8 +60,8 @@ class Playlist extends \Controllers\BaseController {
 		}
 
 		$this->view->songs = $songModel->getSongNames();
-		$this->view->appendToLayout('body', 'createplaylist');
-		$this->view->display('layouts.themesbase');
+		$this->view->appendToLayout('body', 'playlists.createplaylist');
+		$this->view->display('layouts.skeletonLayout');
 	}
 
 	public function listMyPlaylists() {
@@ -69,8 +69,8 @@ class Playlist extends \Controllers\BaseController {
 		$playlists = $playModel->getUserPlaylists($this->app->getSession()->username);
 
 		$this->view->playlists = $playlists;
-		$this->view->appendToLayout('body', 'playlists');
-		$this->view->display('layouts.themesbase');
+		$this->view->appendToLayout('body', 'playlists.playlists');
+		$this->view->display('layouts.skeletonLayout');
 	}
 
 	public function info() {
@@ -110,8 +110,8 @@ class Playlist extends \Controllers\BaseController {
 			}
 		}
 
-		$this->view->appendToLayout('body', 'playlistInfo');
-		$this->view->display('layouts.themesbase');
+		$this->view->appendToLayout('body', 'playlists.playlistInfo');
+		$this->view->display('layouts.skeletonLayout');
 	}
 
 	private function getPage($playModel) {

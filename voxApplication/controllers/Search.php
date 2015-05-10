@@ -20,6 +20,6 @@ class Search extends \Controllers\BaseController {
 
 
 		$this->view->appendToLayout('body', 'search');
-		$this->view->display('layouts.themesbase');
+		$this->view->display('layouts.skeletonLayout');
 	}
 }
