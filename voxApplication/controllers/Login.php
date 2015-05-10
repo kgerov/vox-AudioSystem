@@ -7,6 +7,7 @@ class Login extends \Controllers\BaseController {
 		$userModel = new \Models\UserModel();
 		$this->view->token = $this->app->getSession()->token;
 
+		// Login
 		$username = $this->input->post("username");
 		$pass = $this->input->post("pass");
 		$token = $this->input->post("token");
@@ -20,6 +21,7 @@ class Login extends \Controllers\BaseController {
 				$this->app->getSession()->userId = $response[0]['id'];
 				$this->app->getSession()->isAdmin = $response[0]['isAdmin'];
 				$this->app->getSession()->notyVal = '1Login successful|';
+
 				header('Location: /index.php/songs');
 				exit;
 			} else {
@@ -27,7 +29,7 @@ class Login extends \Controllers\BaseController {
 			}
 		}
 
-
+		// Register
 		$newUsername = $this->input->post("newUsername");
 		$email = $this->input->post("email");
 		$pass1 = $this->input->post("password");
@@ -44,6 +46,7 @@ class Login extends \Controllers\BaseController {
 					$this->app->getSession()->username = $newUsername;
 					$this->app->getSession()->userId = $response;
 					$this->app->getSession()->notyVal = '1Successful registration|';
+					
 					header('Location: /index.php/songs');
 					exit;
 				} else {

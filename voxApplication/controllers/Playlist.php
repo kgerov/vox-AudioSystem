@@ -5,30 +5,22 @@ namespace Controllers;
 class Playlist extends \Controllers\BaseController {
 	public function index() {
 		$playModel = new \Models\PlaylistModel();
-
-		$pages = intval($playModel->getPlaylistCount()[0]['pages']);
-		$this->view->pages = ($pages%5 == 0 ? $pages/5 : $pages/5+1);
-
-		if (intval($this->input->get(0)) >= 1) {
-			$this->view->currPage = intval($this->input->get(0));
-		} else {
-			$this->view->currPage = 1;
-		}
+		$this->getPage($playModel);	
 
 		$playlists = $playModel->getWithPage((intval($this->view->currPage)-1)*5);
 
-		$id = $this->input->post("actionplay"); 
+		// Like/Dislike Playlist
+		$id = $this->input->post("actionLike"); 
 		if (isset($id) && $this->app->getSession()->userId) {
 			$response = $playModel->likePlaylist(intval($this->app->getSession()->userId), intval($id));
 
 			if ($response != 0) {
-				$playlists = $playModel->getAll();
-				$this->view->playlists = $playlists;
+				$playlists = $playModel->getWithPage((intval($this->view->currPage)-1)*5);
 			}
 		}
 
-		$this->view->playlists = $playlists;
 
+		$this->view->playlists = $playlists;
 		$this->view->appendToLayout('body', 'playlists');
 		$this->view->display('layouts.themesbase');
 	}
@@ -37,8 +29,7 @@ class Playlist extends \Controllers\BaseController {
 		$songModel = new \Models\SongModel();
 		$playlistModel = new \Models\PlaylistModel();
 
-		$this->view->songs = $songModel->getSongNames();
-
+		// Create Playlist
 		$playlistname = $this->input->post("name");
 		$songs = $this->input->post("songs");
 
@@ -51,18 +42,16 @@ class Playlist extends \Controllers\BaseController {
 					header('Location: /index.php/playlists');
 				} else {
 					$songIds = array();
-
 					foreach ($songs as $key => $value) {
 						$songIds[] = intval($value);
 					}
 
 					$response = $playlistModel->addSongsToPlaylist(intval($newPlaylistId), $songIds);
-
 					if ($response != 0) {
 						$this->app->getSession()->notyVal = '1Playlist Created|';
 						header('Location: /index.php/playlists');
 					} else {
-						$this->view->notyVal = '0Error creating playlist|';
+						$this->view->notyVal = '0Error adding songs to playlist|';
 					}
 				}
 			} else {
@@ -70,6 +59,7 @@ class Playlist extends \Controllers\BaseController {
 			}
 		}
 
+		$this->view->songs = $songModel->getSongNames();
 		$this->view->appendToLayout('body', 'createplaylist');
 		$this->view->display('layouts.themesbase');
 	}
@@ -85,9 +75,9 @@ class Playlist extends \Controllers\BaseController {
 
 	public function info() {
 		$playlistModel = new \Models\PlaylistModel();
-		$playlistId = $this->input->get(0);
-		$playlistId = intval($playlistId);
+		$playlistId = intval($this->input->get(0));
 
+		// Get playlist info, songs, comments
 		if (isset($playlistId)) {
 			$this->view->playlist = $playlistModel->getById($playlistId);
 
@@ -97,7 +87,8 @@ class Playlist extends \Controllers\BaseController {
 			}
 		}
 
-		$id = $this->input->post("actionplay");
+		// Like/Dislike playlist
+		$id = $this->input->post("actionLike");
 		if (isset($id) && $this->app->getSession()->userId) {
 			$response = $playlistModel->likePlaylist(intval($this->app->getSession()->userId), intval($id));
 
@@ -106,8 +97,8 @@ class Playlist extends \Controllers\BaseController {
 			}
 		}
 
+		// Comment on playlist
 		$comment = $this->input->post("comment");
-
 		if (isset($comment) && $this->app->getSession()->userId) {
 			$response = $playlistModel->publishComment($playlistId, intval($this->app->getSession()->userId), $comment);
 
@@ -121,5 +112,16 @@ class Playlist extends \Controllers\BaseController {
 
 		$this->view->appendToLayout('body', 'playlistInfo');
 		$this->view->display('layouts.themesbase');
+	}
+
+	private function getPage($playModel) {
+		$pages = intval($playModel->getPlaylistCount()[0]['pages']);
+		$this->view->pages = ($pages%5 == 0 ? $pages/5 : $pages/5+1);
+
+		if (intval($this->input->get(0)) >= 1) {
+			$this->view->currPage = intval($this->input->get(0));
+		} else {
+			$this->view->currPage = 1;
+		}
 	}
 }

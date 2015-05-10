@@ -6,6 +6,7 @@ class Search extends \Controllers\BaseController {
 	public function index() {
 		$songModel = new \Models\SongModel();
 
+		// Search
 		$search = $this->input->post("search");
 		if (isset($search)) {
 			$this->view->songs = $songModel->getAllByName($search);

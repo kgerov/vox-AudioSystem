@@ -14,32 +14,33 @@
 		<div class="col-lg-12">
 			<!--first post-->
 			<?php foreach($this->playlist as $key=>$value): ?>
-			<article class="row post-container">
-				<!--meta col-->
-				<aside class="col-md-4 col-lg-3">
-					<div class="post-author">
-						<img class="pull-left avatar" src="/assets/img/default-user.png" alt="user"/>
-						<strong>Uploaded by:</strong>
-						<p><?php echo ($value['username'] ? $value['username'] : 'anonymous'); ?></p>
+			<div>
+				<article class="row post-container">
+					<!--meta col-->
+					<aside class="col-md-4 col-lg-3">
+						<div class="post-author">
+							<img class="pull-left avatar" src="/assets/img/default-user.png" alt="user"/>
+							<strong>Uploaded by:</strong>
+							<p><?php echo ($value['username'] ? $value['username'] : 'anonymous'); ?></p>
+						</div>
+					</aside>
+					<!--content col-->
+					<div class="col-md-8 col-lg-9">
+						<h2 class="post-heading"><a href="/index.php/playlists/info/<?php echo $value['id'];?>"><?php echo ($value['name'] ? $value['name'] : 'No name'); ?></a></h2>
+						<ul class="playlist-songs">
+							<?php foreach($this->songs as $k=>$v): ?>
+								<li><a href="/index.php/songs/info/<?php echo $v['id'];?>"><i class="icon-music"> </i><?php echo $v['name'];?></a></li>
+							<?php endforeach; ?>
+						</ul>
+						<span id="<?php echo $value['id']; ?>" class="upvotes"><?php echo ($value['upvotes'] ? $value['upvotes'] : '0'); ?></span>
+						<? if ($this->username): ?>
+							<form method="post" class="like-form">
+								<input type="hidden" name="actionLike" value="<?php echo $value['id']; ?>">
+								<input type="submit" class="btn btn-success like-button" value="Like it!">
+							</form>
+						<? endif; ?>
 					</div>
-				</aside>
-				<!--content col-->
-				<div class="col-md-8 col-lg-9">
-					<h2 class="post-heading"><a href="/index.php/playlists/info/<?php echo $value['id'];?>"><?php echo ($value['name'] ? $value['name'] : 'No name'); ?></a></h2>
-					<ul class="playlist-songs">
-						<?php foreach($this->songs as $k=>$v): ?>
-							<li><a href="/index.php/songs/info/<?php echo $v['id'];?>"><i class="icon-music"> </i><?php echo $v['name'];?></a></li>
-						<?php endforeach; ?>
-					</ul>
-					<span id="<?php echo $value['id']; ?>" class="upvotes"><?php echo ($value['upvotes'] ? $value['upvotes'] : '0'); ?></span>
-					<? if ($this->username): ?>
-						<form method="post" class="like-form">
-							<input type="hidden" name="actionplay" value="<?php echo $value['id']; ?>">
-							<input type="submit" class="btn btn-success like-button" value="Like it!">
-						</form>
-					<? endif; ?>
-				</div>
-
+					
 					<!-- comments -->
 					<h2 id="comment-section">Latest comments:</h2>
 					<br class="spacer-lg">

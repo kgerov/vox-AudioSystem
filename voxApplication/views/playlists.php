@@ -34,7 +34,7 @@
 					<span id="<?php echo $value['id']; ?>" class="upvotes"><?php echo ($value['upvotes'] ? $value['upvotes'] : '0'); ?></span>
 					<? if ($this->username): ?>
 						<form method="post" class="like-form">
-							<input type="hidden" name="actionplay" value="<?php echo $value['id']; ?>">
+							<input type="hidden" name="actionLike" value="<?php echo $value['id']; ?>">
 							<input type="submit" class="btn btn-success like-button" value="Like it!">
 						</form>
 					<? endif; ?>

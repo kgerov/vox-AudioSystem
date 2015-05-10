@@ -7,8 +7,8 @@ class Genres extends \Controllers\BaseController {
 		$genreModel = new \Models\GenreModel();
 		$genres = $genreModel->getAll();
 
+		// Create Genre
 		$name = $this->input->post("name");
-
 		if (isset($name)) {
 			$response = $genreModel->create($name);	
 
@@ -20,6 +20,7 @@ class Genres extends \Controllers\BaseController {
 			}
 		}
 
+		// Delete Genre
 		$nameDelete = $this->input->post("actionDelete"); 
 		if (isset($nameDelete) && $this->app->getSession()->userId) {
 			$response = $genreModel->delete($nameDelete);
@@ -32,6 +33,7 @@ class Genres extends \Controllers\BaseController {
 			}
 		}
 
+		// Edit Genre
 		$nameEdit = $this->input->post("actionEdit");
 		$newname = $this->input->post("newName");
 		if (isset($nameEdit) && $this->app->getSession()->userId) {
@@ -46,7 +48,6 @@ class Genres extends \Controllers\BaseController {
 		}
 
 		$this->view->genres = $genres;
-
 		$this->view->appendToLayout('body', 'genres');
 		$this->view->display('layouts.themesbase');
 	}
