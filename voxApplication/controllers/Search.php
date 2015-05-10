@@ -12,7 +12,7 @@ class Search extends \Controllers\BaseController {
 			$this->view->songs = $songModel->getAllByName($search);
 
 			if (count($this->view->songs) > 0) {
-				$this->view->appendToLayout('body2', 'songs');
+				$this->view->appendToLayout('body2', 'songs.songs');
 			} else {
 				$this->view->appendToLayout('body2', 'errors.noresults');
 			}
